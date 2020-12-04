@@ -1,0 +1,122 @@
+.Products {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap
+}
+
+figure {
+	text-align: center;
+	border-radius: 10px;
+	width: 25%;
+	margin: 0;
+	min-height: 500px;
+	padding: 0 10px;
+	margin-bottom: 30px
+}
+
+figure > div {
+	height: 55%
+}
+
+figure:hover img {
+	transform: translateY(5px)
+}
+
+figure img {
+	width: 100%;
+	max-width: 260px;
+	border-radius: 10px;
+	transition: .2s
+}
+
+figcaption {
+	padding: 10px 5px;
+	text-align: left;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	height: 45%
+}
+
+figure h2 {
+	font-size: 20px
+}
+
+.Brand {
+	color: #797979;
+}
+
+.Price {
+	font-weight: 900
+}
+
+.Price span {
+	color: #d15747
+}
+
+.Description {
+	color: rgb(115, 121, 140)
+}
+
+.Bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+
+figure button {
+	padding: 5px 20px;
+	font-size: 16px;
+	line-height: 24px;
+	background-color: rgb(255, 240, 230);
+	color: rgb(209, 87, 0);
+	border-radius: 9999px;
+	font-weight: 500;
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+	transition-property: background-color, color;
+	transition-duration: 200ms;
+	transition-timing-function: ease-out
+}
+
+figure button:hover {
+	background-color: rgb(255, 210, 179);
+	color: rgb(209, 87, 0)
+}
+
+@media screen and (max-width: 1199px) {
+	figure {
+		width: 33%
+	}
+}
+
+@media screen and (max-width: 900px) {
+	figure {
+		width: 50%
+	}
+	figcaption {
+		text-align: center
+	}
+	.Bottom {
+		justify-content: space-around
+	}
+}
+
+@media screen and (max-width: 600px) {
+	h1, h2 {
+		text-align: center;
+	}
+	figure {
+		width: 100%
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.Products {
+		justify-content: center;
+	}
+	figure {
+		width: 80%
+	}
+}
