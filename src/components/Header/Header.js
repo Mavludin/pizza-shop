@@ -13,8 +13,9 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import SearchIcon from '@material-ui/icons/Search'
+import { OrangeButton } from '../Styled/OrangeButton'
 
-export const Header = ({ totCount, mainHeading }) => {
+export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
   const [boxShadow, setBoxShadow] = useState('none')
 
   const totalCount = useSelector((state) => state.totalCount)
@@ -101,7 +102,7 @@ export const Header = ({ totCount, mainHeading }) => {
                 </Link>
               </li>
               <li>
-                <Link>Snacks</Link>
+                <Link to="/">Snacks</Link>
               </li>
             </ul>
           </nav>
@@ -126,7 +127,6 @@ export const Header = ({ totCount, mainHeading }) => {
             <ul>
               <li>
                 <Link onClick={scrollToMainHeading} to='/'>
-                  {' '}
                   Go to pizza
                 </Link>
               </li>
@@ -137,11 +137,16 @@ export const Header = ({ totCount, mainHeading }) => {
           </nav>
         </div>
 
-        <div className={classes.HeaderRight}>
+        <div className={classes.HeaderMid}>
           <form>
             <SearchIcon />
             <input type='search' name='search' placeholder='Live search' />
           </form>
+        </div>
+
+        <div className={classes.HeaderRight}>
+
+          <OrangeButton onClick={()=>setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
 
           <div className={classes.Cart}>
             <Link onClick={(e) => ifCartNotEmpty(e)} to='/checkout'>

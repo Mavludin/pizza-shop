@@ -6,6 +6,7 @@ import { fetchProducts } from '../../utils/APIController'
 import { Preloader } from '../../components/Preloader/Preloader'
 
 import { Slider } from '../../components/Slider/Slider'
+import { OrangeButton } from '../../components/Styled/OrangeButton'
 
 export const HomePage = ({ mainHeading }) => {
   const [productData, setProductData] = useState([])
@@ -38,7 +39,7 @@ export const HomePage = ({ mainHeading }) => {
               <span>Get for: </span>
               {item.price}$
             </p>
-            <button type='button'>+ Add</button>
+            <OrangeButton>+ Add</OrangeButton>
           </div>
         </figcaption>
       </figure>

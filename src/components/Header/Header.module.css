@@ -8,10 +8,15 @@ header {
 	height: 90px;
 }
 
+.HeaderWrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+
 .HeaderLeft, .HeaderRight {
 	display: flex;
-	align-items: center;
-	width: 50%;
+	align-items: center
 }
 
 .HeaderLeft {
@@ -20,11 +25,6 @@ header {
 
 .HeaderRight {
 	justify-content: inherit;
-}
-
-.HeaderWrap {
-	display: flex;
-	justify-content: space-between;
 }
 
 .Hamb {
@@ -84,7 +84,7 @@ header {
 
 .Logo span {
 	font-weight: 100;
-    color: #000;
+	color: #000;
 }
 
 .Logo img {
@@ -109,16 +109,16 @@ header {
 	border-bottom: 2px solid #000;
 }
 
-form {
+.HeaderWrap form {
 	position: relative;
-    width: 315px;
-    padding: 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
+	width: 315px;
+	padding: 15px 0;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	box-sizing: border-box;
 }
 
-form svg {
+.HeaderWrap form svg {
 	color: gray;
 	position: absolute;
 	left: 3%;
@@ -126,21 +126,21 @@ form svg {
 	transform: translate(0, -50%);
 }
 
-input {
-    outline: none;
-    border: 0;
-    width: 85%;
-    position: absolute;
-    left: 12%;
-    top: 50%;
-    transform: translate(0, -50%);
-    padding: 0;
-    margin: 0;
-    font-size: 1em;
-    font-family: 'Lato', sans-serif;
+.HeaderWrap input {
+	outline: none;
+	border: 0;
+	width: 85%;
+	position: absolute;
+	left: 12%;
+	top: 50%;
+	transform: translate(0, -50%);
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+	font-family: 'Lato', sans-serif;
 }
 
-input:focus::placeholder {
+.HeaderWrap input:focus::placeholder {
 	color: transparent;
 }
 
@@ -148,7 +148,7 @@ input:focus::placeholder {
 	display: flex;
 	align-items: center;
 	width: 100px;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 .MobileCart a, .Cart a {
@@ -180,121 +180,97 @@ input:focus::placeholder {
 
 .Avatar {
 	width: 50px;
-    border-radius: 50%;
-    border: 3px solid #ccc;
-    padding: 2px
+	border-radius: 50%;
+	border: 3px solid #ccc;
+	padding: 2px
 }
 
 .Overlay {
 	width: 100%;
 	height: 100%;
 	position: fixed;
-	top:0;
-	left:0;
+	top: 0;
+	left: 0;
 	z-index: 90;
 	background-color: transparent;
 }
 
 @media screen and (max-width: 900px) {
-
 	header {
-		height: 100px;
+		height: 120px;
 	}
-
 	.HeaderLeft {
 		flex-flow: column;
 		justify-content: space-around;
 	}
-
 	.HeaderRight {
 		flex-flow: column-reverse;
 	}
-
 	.TopMenu ul {
 		text-align: center;
 		padding: 0;
 	}
-
 	.Cart {
 		padding: 5px 0;
 	}
-
-	h1, h2 {
+	.HeaderWrap h1, .HeaderWrap h2 {
 		font-size: 1.8em;
 	}
-
 }
 
 @media screen and (max-width: 600px) {
-
 	header {
-		background-color: rgba(1,1,1,0.2);
+		background-color: rgba(1, 1, 1, 0.2);
 		height: 60px;
 	}
-
-	header .Container{
+	header .Container {
 		padding: 0;
 	}
-
 	.HeaderWrap {
 		align-items: center;
 		padding: 10px 20px;
 		justify-content: space-around;
 	}
-
 	.Hamb {
 		display: block;
 	}
-
 	.HeaderLeft, .HeaderRight {
 		display: none;
 	}
-
 	.TopMenu {
 		display: block;
 		margin: 10px;
 	}
-
 	.TopMenu ul li {
 		display: block;
 		margin: 10px;
 	}
-
 	.TopMenu a {
 		font-size: 20px;
 		letter-spacing: 2px;
 	}
-
 	.Logo {
 		margin-bottom: 5px;
 	}
-
 	.MobileCart {
 		display: flex;
 	}
-
-	h1, h2 {
+	.HeaderWrap h1, .HeaderWrap h2 {
 		text-align: center;
 	}
-
-	form {
+	.HeaderWrap form {
 		width: 250px;
 	}
-
-	form input {
+	.HeaderWrapform input {
 		font-size: 0.8em;
 	}
-
 }
 
 @media screen and (max-width: 414px) {
-
-	input {
+	.HeaderWrap input {
 		font-size: .9em;
 	}
-
-	h1, h2 {
+	.HeaderWrap h1, .HeaderWrap h2 {
 		font-size: 1.2em;
 	}
-
 }

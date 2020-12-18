@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
@@ -10,14 +10,17 @@ import { Thank } from './containers/Thank/Thank'
 import { Footer } from './components/Footer/Footer'
 
 import { endpoints } from './utils/routerEndpoints'
+import { LoginPopUp } from './containers/LoginPopUp/LoginPopUp'
 
-const App = () => {
+export const App = () => {
   const mainHeading = React.createRef()
+
+  const [isLoginPopUpVisible, setIsLoginPopUpVisible] = useState(false)
 
   return (
     <BrowserRouter>
       <div className='App'>
-        <Header mainHeading={mainHeading} />
+        <Header mainHeading={mainHeading} setIsLoginPopUpVisible={setIsLoginPopUpVisible} />
         <main>
           <div className='container'>
             <Switch>
@@ -28,9 +31,15 @@ const App = () => {
           </div>
         </main>
         <Footer />
+        {
+          isLoginPopUpVisible ? 
+            <LoginPopUp 
+              setIsLoginPopUpVisible={setIsLoginPopUpVisible} 
+              isLoginPopUpVisible={isLoginPopUpVisible} 
+            />
+            : null
+        }
       </div>
     </BrowserRouter>
   )
 }
-
-export default App
