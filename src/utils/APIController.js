@@ -1,7 +1,41 @@
 import axios from 'axios'
 import { productDataUrl } from './APIUrls'
 
-export const fetchProducts = async () => {
+export const fetchData = () => {
+  let productsPromise = fetchProducts()
+  return {
+    pizzas: wrapPromise(productsPromise),
+  }
+}
+
+const wrapPromise = (promise) => {
+  let status = 'pending'
+  let result
+  let suspender = promise.then(
+    (r) => {
+      status = 'success'
+      result = r
+    },
+    (e) => {
+      status = 'error'
+      result = e
+    }
+  )
+  return {
+    read() {
+      if (status === 'pending') {
+        throw suspender
+      } else if (status === 'error') {
+        throw result
+      } else if (status === 'success') {
+        return result
+      }
+    },
+  }
+}
+
+const fetchProducts = async () => {
+  console.log('fetching products...')
   const finalData = await axios
     .get(productDataUrl)
     .then((response) => {
@@ -14,19 +48,4 @@ export const fetchProducts = async () => {
     })
 
   return Promise.resolve(finalData.data)
-}
-
-export const fetchProductDetails = async (productId) => {
-  const finalDetails = await axios
-    .get(`${productDataUrl}/${productId}`)
-    .then((response) => {
-      return response
-    })
-    .catch((err) => {
-      return Promise.reject({
-        data: err.response,
-      })
-    })
-
-  return Promise.resolve(finalDetails.data)
 }

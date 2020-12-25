@@ -16,7 +16,7 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
 
   return (
     <React.Fragment>
-      <div onClick={()=>setIsLoginPopUpVisible(false)} className={classes.Overlay}></div>
+      <div onClick={() => setIsLoginPopUpVisible(false)} className={classes.Overlay}></div>
       <Formik
         initialValues={{ login: '', password: '' }}
         validate={(values) => {
@@ -33,7 +33,7 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
           setIsLoginPopUpVisible(false)
         }}>
         <Form className={classes.LoginForm}>
-          <img src={closeIcon} alt="Close" onClick={()=>setIsLoginPopUpVisible(false)} />
+          <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
           <div>
             <Field type='text' name='login' placeholder='Enter login' />
           </div>
@@ -41,7 +41,7 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
             <Field type='password' name='password' placeholder='Enter password' />
           </div>
           <div>
-            <OrangeButton type="submit">Log-in</OrangeButton>
+            <OrangeButton type='submit'>Log-in</OrangeButton>
             <div className={classes.ErrorBox}>
               <ErrorMessage name='login' component='div' className={classes.Error} />
               <ErrorMessage name='password' component='div' className={classes.Error} />

@@ -53,6 +53,10 @@ header {
 	transition: transform .2s ease-out;
 }
 
+.MobileMenu form {
+	margin-top: 10px
+}
+
 .ShowMobileMenu {
 	box-shadow: 1px 1px 5px #000;
 	transform: translateX(0%);
@@ -115,67 +119,61 @@ header {
 	padding: 15px 0;
 	border: 1px solid #ccc;
 	border-radius: 20px;
-	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	padding: 5px
 }
 
 .HeaderWrap form svg {
 	color: gray;
-	position: absolute;
-	left: 3%;
-	top: 50%;
-	transform: translate(0, -50%);
+	height: auto;
+	flex-shrink: unset;
 }
 
 .HeaderWrap input {
 	outline: none;
 	border: 0;
-	width: 85%;
-	position: absolute;
-	left: 12%;
-	top: 50%;
-	transform: translate(0, -50%);
+	width: 100%;
 	padding: 0;
-	margin: 0;
 	font-size: 1em;
 	font-family: 'Lato', sans-serif;
+	margin-left: 5px;
 }
 
 .HeaderWrap input:focus::placeholder {
 	color: transparent;
 }
 
-.MobileCart, .Cart {
+.Cart {
 	display: flex;
 	align-items: center;
 	width: 100px;
 	justify-content: space-between;
 }
 
-.MobileCart a, .Cart a {
+.Cart a {
 	position: relative;
 	margin-top: 10px;
 }
 
-.MobileCart svg, .Cart svg {
+.Cart svg {
 	font-size: 2em;
 	color: #000;
 }
 
-.MobileCart {
-	display: none;
-}
-
-.Counter {
+.CartCounter {
 	position: absolute;
-	background-color: #007eff;
+	background-color: rgb(255,210,179);
 	border-radius: 50%;
-	top: -15px;
-	right: -15px;
-	width: 15px;
-	padding: 5px;
+	top: -10px;
+	right: -10px;
+	min-width: 23px;
+	padding: 2px;
 	font-size: 14px;
 	text-align: center;
-	color: #fff;
+	color: rgb(209,87,0);
+	font-weight: 900
 }
 
 .Avatar {
@@ -203,9 +201,6 @@ header {
 		flex-flow: column;
 		justify-content: space-around;
 	}
-	.HeaderRight {
-		flex-flow: column-reverse;
-	}
 	.TopMenu ul {
 		text-align: center;
 		padding: 0;
@@ -218,13 +213,12 @@ header {
 	}
 }
 
-@media screen and (max-width: 600px) {
-	header {
-		background-color: rgba(1, 1, 1, 0.2);
-		height: 60px;
-	}
+@media screen and (max-width: 768px) {
 	header .Container {
 		padding: 0;
+	}
+	header {
+		height: 80px;
 	}
 	.HeaderWrap {
 		align-items: center;
@@ -234,7 +228,7 @@ header {
 	.Hamb {
 		display: block;
 	}
-	.HeaderLeft, .HeaderRight {
+	.HeaderLeft {
 		display: none;
 	}
 	.TopMenu {
@@ -251,9 +245,6 @@ header {
 	}
 	.Logo {
 		margin-bottom: 5px;
-	}
-	.MobileCart {
-		display: flex;
 	}
 	.HeaderWrap h1, .HeaderWrap h2 {
 		text-align: center;

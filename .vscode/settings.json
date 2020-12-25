@@ -6,9 +6,9 @@
     "prettier.semi": false,
     "prettier.singleQuote": true,
     "prettier.jsxBracketSameLine": true,
-    "prettier.printWidth": 150,
     "editor.tabSize": 2,
     "cSpell.words": [
         "Formik"
-    ]
+    ],
+    "prettier.printWidth": 100
 }

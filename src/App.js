@@ -14,7 +14,6 @@ import { LoginPopUp } from './containers/LoginPopUp/LoginPopUp'
 
 export const App = () => {
   const mainHeading = React.createRef()
-
   const [isLoginPopUpVisible, setIsLoginPopUpVisible] = useState(false)
 
   return (
@@ -26,18 +25,22 @@ export const App = () => {
             <Switch>
               <Route exact path={`${endpoints.THANK}`} component={Thank} />
               <Route exact path={endpoints.CHECKOUT} component={Checkout} />
-              <Route exact path={endpoints.HOMEPAGE} render={(props) => <HomePage mainHeading={mainHeading} {...props} />} />
+              <Route
+                exact
+                path={endpoints.HOMEPAGE}
+                render={(props) => <HomePage mainHeading={mainHeading} {...props} />}
+              />
             </Switch>
           </div>
         </main>
         <Footer />
         {
-          isLoginPopUpVisible ? 
-            <LoginPopUp 
-              setIsLoginPopUpVisible={setIsLoginPopUpVisible} 
-              isLoginPopUpVisible={isLoginPopUpVisible} 
+          isLoginPopUpVisible ? (
+            <LoginPopUp
+              setIsLoginPopUpVisible={setIsLoginPopUpVisible}
+              isLoginPopUpVisible={isLoginPopUpVisible}
             />
-            : null
+          ) : null
         }
       </div>
     </BrowserRouter>

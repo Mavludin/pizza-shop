@@ -5,18 +5,12 @@ import { Link } from 'react-router-dom'
 
 import classes from './Checkout.module.css'
 import { endpoints } from '../../utils/routerEndpoints'
+import { orderPlaced } from '../../store/actions'
 
 export const Checkout = () => {
-  const onOrderPlaced = useDispatch()
+  const dispatch = useDispatch()
 
-  const backToDetails = (id) => {
-    window.open(`${endpoints.DETAILS}${id}`, '_self')
-  }
-
-  const onPlaceOrder = () => {
-    localStorage.clear()
-    onOrderPlaced({ type: 'ORDER_PLACED' })
-  }
+  const onPlaceOrder = () => dispatch(orderPlaced())
 
   let arrayOfValues = []
   for (let i in localStorage) {
@@ -25,27 +19,39 @@ export const Checkout = () => {
     }
   }
 
-  const arrayOfProducts = arrayOfValues.map((item) => {
-    return (
-      <div onClick={() => backToDetails(item.id)} className={classes.Item} key={item.id}>
-        <img src={item.thumbnail} alt={item.name} />
-        <h4>{item.name}</h4>
-        <p>{`x${item.amount}`}</p>
-        <p className={classes.Desc}>Amount: Rs {item.price}</p>
-      </div>
-    )
+  const pizzas = JSON.parse(localStorage['pizzas'])
+
+  const pizzasFromTheCart = pizzas.map((item) => {
+    if (item !== null) {
+      return (
+        <div className={classes.Item} key={item.id}>
+          <img src={item.thumbnail} alt={item.title} />
+          <h4>{item.title}</h4>
+          <p>
+            <strong>amount: </strong>
+            {`${item.amount}`}
+          </p>
+          <p className={classes.Desc}>
+            <strong>Price: </strong>
+            {item.price}
+          </p>
+        </div>
+      )
+    } else return null
   })
 
-  const totalPrice = arrayOfValues.reduce((acc, item) => {
-    return acc + item.price * item.amount
+  const totalPrice = pizzas.reduce((acc, item) => {
+    if (item !== null) {
+      return acc + item.price * item.amount
+    } else return acc + 0
   }, 0)
 
   return (
     <div className={classes.Checkout}>
       <h1>Checkout</h1>
-      <p className={classes.TotalItems}>Total items: {localStorage['amountOfProducts']}</p>
+      <p className={classes.TotalItems}>Total items: {localStorage['amountOfPizzas']}</p>
       <div className={classes.KindaBlock}>
-        <div className={classes.LeftCheck}>{arrayOfProducts}</div>
+        <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
 
         <div className={classes.RightCheck}>
           <div className={classes.Total}>

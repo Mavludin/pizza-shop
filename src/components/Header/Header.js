@@ -20,6 +20,7 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
 
   const totalCount = useSelector((state) => state.totalCount)
   const [mobileMenuFlag, setMobileMenuFlag] = useState(false)
+  const [mobileView, setMobileView] = useState(false)
 
   const history = useHistory()
   const location = useLocation()
@@ -32,16 +33,29 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
         setBoxShadow('none')
       }
     }
-
     window.addEventListener('scroll', handleBoxShadow)
-
     return () => window.removeEventListener('scroll', handleBoxShadow)
   }, [])
+
+  useEffect(() => {
+    const handleInnerWidth = () => {
+      if (window.matchMedia('(max-width: 600px)').matches) {
+        setMobileView(true)
+      } else {
+        if (mobileView) setMobileView(false)
+      }
+    }
+    window.addEventListener('resize', handleInnerWidth)
+    return () => window.removeEventListener('resize', handleInnerWidth)
+  }, [mobileView])
 
   const scrollToMainHeading = () => {
     if (location.pathname !== '/') {
       history.push('/')
-      setTimeout(() => Scroll.animateScroll.scrollTo(parseInt(mainHeading.current.offsetTop - 90)), 500)
+      setTimeout(
+        () => Scroll.animateScroll.scrollTo(parseInt(mainHeading.current.offsetTop - 90)),
+        500
+      )
     } else Scroll.animateScroll.scrollTo(parseInt(mainHeading.current.offsetTop - 90))
   }
 
@@ -59,12 +73,6 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
     setMobileMenuFlag(true)
   }
 
-  let counterClass = ''
-
-  if (localStorage['amountOfProducts'] > 0) {
-    counterClass = classes.Counter
-  }
-
   let mobileMenuClasses = ''
 
   if (mobileMenuFlag) mobileMenuClasses = `${classes.MobileMenu} ${classes.ShowMobileMenu}`
@@ -77,15 +85,6 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
           <div className={classes.Bar1}></div>
           <div className={classes.Bar2}></div>
           <div className={classes.Bar3}></div>
-        </div>
-
-        <div className={classes.MobileCart}>
-          <Link onClick={(e) => ifCartNotEmpty(e)} to='/checkout'>
-            <ShoppingCartIcon />
-            <span className={counterClass}>{totalCount > 0 ? totalCount : localStorage['amountOfProducts']}</span>
-          </Link>
-
-          <img className={classes.Avatar} src={avatar} alt='Avatar' />
         </div>
 
         <div className={mobileMenuClasses}>
@@ -102,7 +101,7 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/">Snacks</Link>
+                <Link to='/'>Snacks</Link>
               </li>
             </ul>
           </nav>
@@ -110,6 +109,9 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
           <div onClick={closeMobileMenu}>
             <HighlightOffIcon />
           </div>
+
+          <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
+          <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Sign Up</OrangeButton>
 
           <form>
             <SearchIcon />
@@ -137,21 +139,22 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
           </nav>
         </div>
 
-        <div className={classes.HeaderMid}>
+        {mobileView ? null : (
           <form>
             <SearchIcon />
             <input type='search' name='search' placeholder='Live search' />
           </form>
-        </div>
+        )}
 
         <div className={classes.HeaderRight}>
-
-          <OrangeButton onClick={()=>setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
+          {mobileView ? null : (
+            <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
+          )}
 
           <div className={classes.Cart}>
             <Link onClick={(e) => ifCartNotEmpty(e)} to='/checkout'>
               <ShoppingCartIcon />
-              <span className={counterClass}>{totalCount > 0 ? totalCount : localStorage['amountOfProducts']}</span>
+              {totalCount > 0 ? <span className={classes.CartCounter}>{totalCount}</span> : null}
             </Link>
             <img className={classes.Avatar} src={avatar} alt='Avatar' />
           </div>
