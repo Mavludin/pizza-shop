@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './Products.module.css'
 import { OrangeButton } from '../../../components/Styled/OrangeButton'
 import { useDispatch } from 'react-redux'
+import { incrementByOne } from '../../../store/actions'
 
 export const Products = ({ productData }) => {
   const pizzas = productData.pizzas.read()
@@ -22,7 +23,7 @@ export const Products = ({ productData }) => {
   }
 
   const dispatch = useDispatch()
-  const incrementTheCart = () => dispatch({ type: 'INCREMENT_BY_ONE' })
+  const incrementTheCart = () => dispatch(incrementByOne())
 
   return (
     <div className={classes.Products}>

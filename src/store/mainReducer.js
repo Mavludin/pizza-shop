@@ -1,15 +1,14 @@
 import { INCREMENT_BY_ONE, ORDER_PLACED } from './actions'
 
 const initialState = {
-  totalCount: 0 || parseInt(localStorage[('amountOfPizzas')]),
+  totalCount: parseInt(localStorage[('amountOfPizzas')]) || 0,
 }
 
 export const mainReducer = (state = initialState, action) => {
   if (action.type === INCREMENT_BY_ONE) {
-    if (localStorage[('amountOfPizzas')]) 
-    localStorage.setItem('amountOfPizzas', state.totalCount + 1)
-    else localStorage.setItem('amountOfPizzas', 1)
-    return { ...state, totalCount: state.totalCount + 1 }
+    const tot = state.totalCount + 1
+    localStorage.setItem('amountOfPizzas', tot)
+    return { ...state, totalCount: tot }
   } else if (action.type === ORDER_PLACED) {
     localStorage.removeItem('pizzas')
     localStorage.removeItem('amountOfPizzas')

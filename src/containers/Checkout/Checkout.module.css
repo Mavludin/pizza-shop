@@ -15,9 +15,9 @@
 	width: 40%;
 	max-height: 155px;
 	box-shadow: 5px 5px 10px #ccc;
-    border-radius: 10px;
-    padding: 10px 20px;
-    box-sizing: border-box;
+	border-radius: 10px;
+	padding: 10px 20px;
+	box-sizing: border-box;
 }
 
 .RightCheck  h2 {
@@ -25,10 +25,10 @@
 	color: #007eff;
 }
 
-.Desc span {
-	font-weight: bold;
+.Price span {
+	font-weight: 600;
 	color: black;
-	font-size: 1.2em;
+	font-size: 1.2em
 }
 
 .Item {
@@ -38,35 +38,90 @@
 	overflow: hidden;
 	width: 70%;
 	margin-bottom: 15px;
-	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	transition: all 0.2s
+}
+
+.ItemContent {
+	display: flex;
+  align-items: center;
 }
 
 .Item h4 {
 	margin: 0;
 }
 
-.Item img {
+.AmountControl {
+	position: relative;
+    width: 96px;
+    height: 32px;
+    display: flex;
+    background-color: rgb(243, 243, 247);
+    border-radius: 9999px;
+		-webkit-box-pack: justify;
+		align-items: center;
+    justify-content: space-around
+}
+
+
+.AmountControl button:first-of-type {
+	padding-bottom: 2px
+}
+
+.AmountControl button {
+	margin: 0px;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+		align-items: center;
+		font-size: 26px;
+		color: rgb(115, 121, 140);
+		font-weight: 600;
+		transition: .2s
+}
+
+.AmountControl div {
+	position: relative;
+    z-index: 1;
+    height: 100%;
+    color: rgb(92, 99, 112);
+    font-size: 16px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+		font-weight: 500;
+		font-size: 18px
+}
+
+.AmountControl button:hover { color: black }
+
+.ItemContent img {
 	width: 70px;
-	float: left;
 	margin-right: 10px;
 	border-radius: 5px;
 }
 
-.Checkout .Item {
-	cursor: pointer;
-	transition: all 0.2s;
-}
-
-.Checkout .Item:hover {
+.Item:hover {
 	background-color: #eaeaea;
 }
 
-.LeftCheck .Desc {
-	margin-bottom: 0;
+.DeleteIcon img {
+	width: 32px;
+	cursor: pointer;
+	transition: .2s
 }
 
-.Checkout button:hover {
-	background-color: #3a99fb;
+.DeleteIcon:hover img {
+	transform: scale(1.05)
 }
 
 @media screen and (max-width: 900px) {

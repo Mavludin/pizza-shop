@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import classes from './Checkout.module.css'
 import { endpoints } from '../../utils/routerEndpoints'
 import { orderPlaced } from '../../store/actions'
+import deleteIcon from '../../assets/images/delete.svg'
 
 export const Checkout = () => {
   const dispatch = useDispatch()
@@ -19,22 +20,29 @@ export const Checkout = () => {
     }
   }
 
-  const pizzas = JSON.parse(localStorage['pizzas'])
+  let pizzas = JSON.parse(localStorage['pizzas'])
 
-  const pizzasFromTheCart = pizzas.map((item) => {
+
+  const pizzasFromTheCart = pizzas.map((item, pos) => {
     if (item !== null) {
       return (
         <div className={classes.Item} key={item.id}>
-          <img src={item.thumbnail} alt={item.title} />
-          <h4>{item.title}</h4>
-          <p>
-            <strong>amount: </strong>
-            {`${item.amount}`}
-          </p>
-          <p className={classes.Desc}>
-            <strong>Price: </strong>
+          <div className={classes.ItemContent}>
+            <img src={item.thumbnail} alt={item.title} />
+            <h4>{item.title}</h4>
+          </div>
+          <div className={classes.AmountControl}>
+            <button>-</button>
+            <div>{`${item.amount}`}</div>
+            <button>+</button>
+          </div>
+          <div className={classes.Price}>
             {item.price}
-          </p>
+            <span>$</span>
+          </div>
+          <div className={classes.DeleteIcon}>
+            <img src={deleteIcon} alt="Delete an item" />
+          </div>
         </div>
       )
     } else return null
@@ -49,7 +57,9 @@ export const Checkout = () => {
   return (
     <div className={classes.Checkout}>
       <h1>Checkout</h1>
-      <p className={classes.TotalItems}>Total items: {localStorage['amountOfPizzas']}</p>
+      <p className={classes.TotalItems}>
+        Total items: {localStorage['amountOfPizzas']}
+      </p>
       <div className={classes.KindaBlock}>
         <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
 
