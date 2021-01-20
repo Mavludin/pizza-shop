@@ -1,4 +1,3 @@
-import React from 'react'
 import classes from './Products.module.css'
 import { OrangeButton } from '../../../components/Styled/OrangeButton'
 import { useDispatch } from 'react-redux'

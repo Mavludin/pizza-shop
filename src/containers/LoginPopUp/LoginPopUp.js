@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import React, { useEffect } from 'react'
+import { Fragment, useEffect } from 'react';
 import { OrangeButton } from '../../components/Styled/OrangeButton'
 import classes from './LoginPopUp.module.css'
 import closeIcon from '../../assets/images/close.svg'
@@ -15,7 +15,7 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
   }, [isLoginPopUpVisible, setIsLoginPopUpVisible])
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div onClick={() => setIsLoginPopUpVisible(false)} className={classes.Overlay}></div>
       <Formik
         initialValues={{ login: '', password: '' }}
@@ -49,6 +49,6 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
           </div>
         </Form>
       </Formik>
-    </React.Fragment>
-  )
+    </Fragment>
+  );
 }

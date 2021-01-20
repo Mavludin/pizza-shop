@@ -168,12 +168,13 @@ header {
 	border-radius: 50%;
 	top: -10px;
 	right: -10px;
-	min-width: 23px;
-	padding: 2px;
-	font-size: 14px;
+	min-width: 22px;
+	padding: 0px 3px;
+	height: 22px;
+	font-size: 16px;
 	text-align: center;
 	color: rgb(209,87,0);
-	font-weight: 900
+	font-weight: 900;
 }
 
 .Avatar {

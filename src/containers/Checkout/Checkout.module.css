@@ -1,10 +1,11 @@
-.KindaBlock {
+.Content {
 	display: flex;
 	justify-content: space-between;
 }
 
 .TotalItems {
 	font-size: 1.2em;
+	margin-bottom: 10px;
 }
 
 .LeftCheck {
@@ -17,12 +18,22 @@
 	box-shadow: 5px 5px 10px #ccc;
 	border-radius: 10px;
 	padding: 10px 20px;
-	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .RightCheck  h2 {
 	margin: 0;
-	color: #007eff;
+}
+
+.RightCheck  h2 span {
+	color: #d15700;
+}
+
+.RightCheck button {
+	width: 100%;
 }
 
 .Price span {
@@ -126,7 +137,7 @@
 
 @media screen and (max-width: 900px) {
 
-	.KindaBlock {
+	.Content {
 		flex-wrap: wrap;
 	}
 

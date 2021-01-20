@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { productDataUrl } from './APIUrls'
+import { productDataUrl } from './apiUrls'
 
 export const fetchData = () => {
   let productsPromise = fetchProducts()

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { createRef, useState } from 'react';
 import './App.css'
 
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
@@ -9,11 +9,12 @@ import { Checkout } from './containers/Checkout/Checkout'
 import { Thank } from './containers/Thank/Thank'
 import { Footer } from './components/Footer/Footer'
 
-import { endpoints } from './utils/routerEndpoints'
+import { endpoints } from './shared/routerEndpoints'
 import { LoginPopUp } from './containers/LoginPopUp/LoginPopUp'
 
 export const App = () => {
-  const mainHeading = React.createRef()
+
+  const mainHeading = createRef()
   const [isLoginPopUpVisible, setIsLoginPopUpVisible] = useState(false)
 
   return (

@@ -1,9 +1,8 @@
-import React from 'react'
+import { Fragment, Suspense } from 'react';
 
-import { fetchData } from '../../utils/APIController'
+import { fetchData } from '../../shared/apiController'
 
 import { Slider } from '../../components/Slider/Slider'
-import { Suspense } from 'react'
 import preloaderIcon from '../../assets/images/preloader.gif'
 import { Products } from './components/Products'
 
@@ -11,12 +10,12 @@ const productData = fetchData()
 
 export const HomePage = ({ mainHeading }) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <Slider />
       <Suspense fallback={<img src={preloaderIcon} alt='Preloader Icon' />}>
-        <h1 ref={mainHeading}>Pizza</h1>
+        <h1 datatype="Pizza" ref={mainHeading}>Pizza</h1>
         <Products productData={productData} />
       </Suspense>
-    </React.Fragment>
-  )
+    </Fragment>
+  );
 }

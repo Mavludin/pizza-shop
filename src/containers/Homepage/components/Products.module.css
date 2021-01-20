@@ -18,15 +18,17 @@ figure > div {
 	height: 55%
 }
 
-figure:hover img {
-	transform: translateY(5px)
-}
-
 figure img {
+	position: relative;
+	top: 0;
 	width: 100%;
 	max-width: 260px;
 	border-radius: 10px;
-	transition: .2s
+	transition: top 150ms ease-out 0s
+}
+
+figure img:hover {
+	top: 3px;
 }
 
 figcaption {

@@ -1,12 +1,12 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 import classes from './Checkout.module.css'
-import { endpoints } from '../../utils/routerEndpoints'
+import { endpoints } from '../../shared/routerEndpoints'
 import { orderPlaced } from '../../store/actions'
 import deleteIcon from '../../assets/images/delete.svg'
+import { OrangeButton } from '../../components/Styled/OrangeButton'
 
 export const Checkout = () => {
   const dispatch = useDispatch()
@@ -56,23 +56,17 @@ export const Checkout = () => {
 
   return (
     <div className={classes.Checkout}>
-      <h1>Checkout</h1>
+      <h1 datatype="Checkout">Checkout</h1>
       <p className={classes.TotalItems}>
-        Total items: {localStorage['amountOfPizzas']}
+        <strong>Total items:</strong> {localStorage['amountOfPizzas']}
       </p>
-      <div className={classes.KindaBlock}>
+      <div className={classes.Content}>
         <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
-
         <div className={classes.RightCheck}>
-          <div className={classes.Total}>
-            <h2>Total amount</h2>
-            <p className={classes.Desc}>
-              Total price: <span>{totalPrice}</span>
-            </p>
-            <Link to={endpoints.THANK}>
-              <button onClick={onPlaceOrder}>Place Order</button>
-            </Link>
-          </div>
+          <h2>Total price: <span>{totalPrice}$</span></h2>
+          <Link to={endpoints.THANK}>
+            <OrangeButton onClick={onPlaceOrder}>Place Order</OrangeButton>
+          </Link>
         </div>
       </div>
     </div>

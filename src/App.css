@@ -26,8 +26,30 @@ main {
 }
 
 h1 {
-	font-size: 2em
+	/* color: #fbe6d3; */
+	/* text-transform: uppercase; */
+	/* text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; */
+	font-weight: 900;
+	position: relative;
+	font-size: 2em;
 }
+
+/* h1:before {
+	content: attr(datatype);
+	position: absolute;
+	left: -6px;
+	top: -2px;
+	z-index: 2;
+	overflow: hidden;
+	color: #d15700;
+	transform: translate(0.4vw, 0.3vh);
+	mix-blend-mode: darken;
+	width: 100%;
+	text-shadow: 1px 0px 0px black, 0px 1px 0px black, 2px 1px 0px black, 1px 2px 0px black, 3px 2px 0px black, 2px 3px 0px black, 4px 3px 0px black, 3px 4px 0px black, 5px 4px 0px black, 4px 5px 0px black, 6px 5px 0px black, 5px 6px 0px black, 7px 6px 0px black;
+	transition: .2s ease-in-out;
+} */
+
+/* h1:hover:before { left: -4px } */
 
 ul {
 	list-style-type: none;
