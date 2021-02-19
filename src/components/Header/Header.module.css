@@ -150,6 +150,7 @@ header {
 	align-items: center;
 	width: 100px;
 	justify-content: space-between;
+	position: relative;
 }
 
 .Cart a {

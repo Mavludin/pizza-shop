@@ -1,0 +1,56 @@
+.Placed {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	text-align: center;
+	width: 100%;
+}
+
+.Placed h1, p {
+	margin: 0
+}
+
+.Desc {
+  color: #797979;
+}
+
+.Placed img {
+	width: 200px;
+	animation: carDrive 1s linear infinite;
+}
+
+@keyframes carDrive {
+	0% {
+		transform: translateY(0%);
+	}
+
+	25% {
+		transform: translateX(-2%);
+	}
+
+	50% {
+		transform: translateX(0%);
+	}
+
+	75% {
+		transform: translateX(2%);
+	}
+
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.Placed svg {
+		font-size: 12em;
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.Placed svg {
+		font-size: 6em;
+	}
+}

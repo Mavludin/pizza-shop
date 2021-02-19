@@ -35,7 +35,7 @@ const wrapPromise = (promise) => {
 }
 
 const fetchProducts = async () => {
-  console.log('fetching products...')
+  console.log('fetching pizzas...')
   const finalData = await axios
     .get(productDataUrl)
     .then((response) => {

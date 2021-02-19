@@ -15,10 +15,10 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import SearchIcon from '@material-ui/icons/Search'
 import { OrangeButton } from '../Styled/OrangeButton'
 
-export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
+export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
   const [boxShadow, setBoxShadow] = useState('none')
 
-  const totalCount = useSelector((state) => state.totalCount)
+  const amountOfPizzas = useSelector((state) => state).amountOfPizzas;
   const [mobileMenuFlag, setMobileMenuFlag] = useState(false)
   const [mobileView, setMobileView] = useState(false)
 
@@ -60,7 +60,7 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
   }
 
   const ifCartNotEmpty = (e) => {
-    if (totCount === 0) {
+    if (amountOfPizzas === 0) {
       e.preventDefault()
     }
   }
@@ -154,7 +154,7 @@ export const Header = ({ totCount, mainHeading, setIsLoginPopUpVisible }) => {
           <div className={classes.Cart}>
             <Link onClick={(e) => ifCartNotEmpty(e)} to='/checkout'>
               <ShoppingCartIcon />
-              {totalCount > 0 ? <span className={classes.CartCounter}>{totalCount}</span> : null}
+              {amountOfPizzas > 0 ? <span className={classes.CartCounter}>{amountOfPizzas}</span> : null}
             </Link>
             <img className={classes.Avatar} src={avatar} alt='Avatar' />
           </div>

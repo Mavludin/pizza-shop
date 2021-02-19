@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 import classes from './Checkout.module.css'
 import { endpoints } from '../../shared/routerEndpoints'
-import { orderPlaced } from '../../store/actions'
 import deleteIcon from '../../assets/images/delete.svg'
 import { OrangeButton } from '../../components/Styled/OrangeButton'
+import { placed, removeItem } from '../../store/slices/count'
+import { useState } from 'react'
 
 export const Checkout = () => {
   const dispatch = useDispatch()
-
-  const onPlaceOrder = () => dispatch(orderPlaced())
+  const placeOrder = () => dispatch(placed())
 
   let arrayOfValues = []
   for (let i in localStorage) {
@@ -20,8 +20,18 @@ export const Checkout = () => {
     }
   }
 
-  let pizzas = JSON.parse(localStorage['pizzas'])
+  const [pizzas, setPizzas] = useState(JSON.parse(localStorage['pizzas']))
 
+  const deleteItem = (pos) => {
+    const sure = window.confirm('You sure?');
+    if (sure) {
+      dispatch(removeItem(pizzas[pos].amount));
+      const temp = [...pizzas];
+      temp.splice(pos, 1);
+      setPizzas(temp);
+      localStorage.setItem('pizzas', JSON.stringify(temp));
+    }
+  }
 
   const pizzasFromTheCart = pizzas.map((item, pos) => {
     if (item !== null) {
@@ -41,7 +51,7 @@ export const Checkout = () => {
             <span>$</span>
           </div>
           <div className={classes.DeleteIcon}>
-            <img src={deleteIcon} alt="Delete an item" />
+            <img src={deleteIcon} alt="Delete an item" onClick={()=>deleteItem(pos)} />
           </div>
         </div>
       )
@@ -65,7 +75,9 @@ export const Checkout = () => {
         <div className={classes.RightCheck}>
           <h2>Total price: <span>{totalPrice}$</span></h2>
           <Link to={endpoints.THANK}>
-            <OrangeButton onClick={onPlaceOrder}>Place Order</OrangeButton>
+            <Link to="/placed">
+              <OrangeButton onClick={placeOrder}>Place Order</OrangeButton>
+            </Link>
           </Link>
         </div>
       </div>

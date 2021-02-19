@@ -6,7 +6,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { Header } from './components/Header/Header'
 import { HomePage } from './containers/Homepage/HomePage'
 import { Checkout } from './containers/Checkout/Checkout'
-import { Thank } from './containers/Thank/Thank'
+import { Placed } from './containers/Placed/Placed'
 import { Footer } from './components/Footer/Footer'
 
 import { endpoints } from './shared/routerEndpoints'
@@ -24,7 +24,7 @@ export const App = () => {
         <main>
           <div className='container'>
             <Switch>
-              <Route exact path={`${endpoints.THANK}`} component={Thank} />
+              <Route exact path={`${endpoints.PLACED}`} component={Placed} />
               <Route exact path={endpoints.CHECKOUT} component={Checkout} />
               <Route
                 exact

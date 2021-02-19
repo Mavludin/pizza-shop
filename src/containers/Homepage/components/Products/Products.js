@@ -1,9 +1,9 @@
 import classes from './Products.module.css'
-import { OrangeButton } from '../../../components/Styled/OrangeButton'
+import { OrangeButton } from '../../../../components/Styled/OrangeButton'
 import { useDispatch } from 'react-redux'
-import { incrementByOne } from '../../../store/actions'
+import { increment } from '../../../../store/slices/count'
 
-export const Products = ({ productData }) => {
+export const Products = ({ productData, handlePopUpShow }) => {
   const pizzas = productData.pizzas.read()
 
   const addToCart = (item, pos) => {
@@ -17,12 +17,12 @@ export const Products = ({ productData }) => {
       const pizza = { ...item, amount: 1 }
       tempArray[pos] = pizza
     }
-
+    handlePopUpShow(tempArray[pos].title)
     localStorage.setItem('pizzas', JSON.stringify(tempArray))
   }
 
   const dispatch = useDispatch()
-  const incrementTheCart = () => dispatch(incrementByOne())
+  const incrementTheCart = () => dispatch(increment())
 
   return (
     <div className={classes.Products}>
