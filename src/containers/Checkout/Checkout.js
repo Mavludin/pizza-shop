@@ -23,13 +23,13 @@ export const Checkout = () => {
   const [pizzas, setPizzas] = useState(JSON.parse(localStorage['pizzas']))
 
   const deleteItem = (pos) => {
-    const sure = window.confirm('You sure?');
+    const sure = window.confirm('You sure?')
     if (sure) {
-      dispatch(removeItem(pizzas[pos].amount));
-      const temp = [...pizzas];
-      temp.splice(pos, 1);
-      setPizzas(temp);
-      localStorage.setItem('pizzas', JSON.stringify(temp));
+      dispatch(removeItem(pizzas[pos].amount))
+      const temp = [...pizzas]
+      temp.splice(pos, 1)
+      setPizzas(temp)
+      localStorage.setItem('pizzas', JSON.stringify(temp))
     }
   }
 
@@ -38,20 +38,24 @@ export const Checkout = () => {
       return (
         <div className={classes.Item} key={item.id}>
           <div className={classes.ItemContent}>
-            <img src={item.thumbnail} alt={item.title} />
-            <h4>{item.title}</h4>
-          </div>
-          <div className={classes.AmountControl}>
-            <button>-</button>
-            <div>{`${item.amount}`}</div>
-            <button>+</button>
-          </div>
-          <div className={classes.Price}>
-            {item.price}
-            <span>$</span>
-          </div>
-          <div className={classes.DeleteIcon}>
-            <img src={deleteIcon} alt="Delete an item" onClick={()=>deleteItem(pos)} />
+            <div className={classes.Left}>
+              <img src={item.thumbnail} alt={item.title} />
+              <h4>{item.title}</h4>
+            </div>
+            <div className={classes.Right}>
+              <div className={classes.AmountControl}>
+                <button>-</button>
+                <div>{`${item.amount}`}</div>
+                <button>+</button>
+              </div>
+              <div className={classes.Price}>
+                {item.price}
+                <span>$</span>
+              </div>
+              <div className={classes.DeleteIcon}>
+                <img src={deleteIcon} alt='Delete an item' onClick={() => deleteItem(pos)} />
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -66,18 +70,18 @@ export const Checkout = () => {
 
   return (
     <div className={classes.Checkout}>
-      <h1 datatype="Checkout">Checkout</h1>
+      <h1 datatype='Checkout'>Checkout</h1>
       <p className={classes.TotalItems}>
         <strong>Total items:</strong> {localStorage['amountOfPizzas']}
       </p>
       <div className={classes.Content}>
         <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
         <div className={classes.RightCheck}>
-          <h2>Total price: <span>{totalPrice}$</span></h2>
-          <Link to={endpoints.THANK}>
-            <Link to="/placed">
-              <OrangeButton onClick={placeOrder}>Place Order</OrangeButton>
-            </Link>
+          <h2>
+            Total price: <span>{totalPrice}$</span>
+          </h2>
+          <Link to={endpoints.PLACED}>
+            <OrangeButton onClick={placeOrder}>Place Order</OrangeButton>
           </Link>
         </div>
       </div>

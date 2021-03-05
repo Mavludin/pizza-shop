@@ -19,10 +19,6 @@ header {
 	align-items: center
 }
 
-.HeaderLeft {
-	justify-content: flex-start;
-}
-
 .HeaderRight {
 	justify-content: inherit;
 }
@@ -104,18 +100,19 @@ header {
 .TopMenu a {
 	text-transform: uppercase;
 	color: #000;
-	font-weight: 600;
+	font-weight: 500;
 	transition: all 0.2s linear;
 	border-bottom: 2px solid transparent;
+	font-size: 18px;
 }
 
 .TopMenu a:hover {
-	border-bottom: 2px solid #000;
+	color: rgb(209, 87, 0)
 }
 
 .HeaderWrap form {
 	position: relative;
-	width: 315px;
+	width: 250px;
 	padding: 15px 0;
 	border: 1px solid #ccc;
 	border-radius: 20px;
@@ -129,6 +126,7 @@ header {
 	color: gray;
 	height: auto;
 	flex-shrink: unset;
+	width: .9em;
 }
 
 .HeaderWrap input {
@@ -137,7 +135,6 @@ header {
 	width: 100%;
 	padding: 0;
 	font-size: 1em;
-	font-family: 'Lato', sans-serif;
 	margin-left: 5px;
 }
 
@@ -151,6 +148,24 @@ header {
 	width: 100px;
 	justify-content: space-between;
 	position: relative;
+}
+
+.CartMessage {
+	position: absolute;
+	background-color: #393939;
+	color: white;
+	padding: 5px;
+	border-radius: 8px;
+	width: max-content;
+}
+
+.CartMessage::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 0;
+	left: 0;
 }
 
 .Cart a {
@@ -201,7 +216,6 @@ header {
 	}
 	.HeaderLeft {
 		flex-flow: column;
-		justify-content: space-around;
 	}
 	.TopMenu ul {
 		text-align: center;
@@ -216,7 +230,7 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-	header .Container {
+	header .container {
 		padding: 0;
 	}
 	header {
@@ -250,9 +264,6 @@ header {
 	}
 	.HeaderWrap h1, .HeaderWrap h2 {
 		text-align: center;
-	}
-	.HeaderWrap form {
-		width: 250px;
 	}
 	.HeaderWrapform input {
 		font-size: 0.8em;

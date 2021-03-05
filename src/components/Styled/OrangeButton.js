@@ -7,7 +7,6 @@ export const OrangeButton = styled.button`
   background-color: rgb(255, 240, 230);
   color: rgb(209, 87, 0);
   border-radius: 9999px;
-  font-weight: 500;
   margin-right: 20px;
   position: relative;
   overflow: hidden;

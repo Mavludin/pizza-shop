@@ -115,7 +115,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
 
           <form>
             <SearchIcon />
-            <input type='search' name='search' placeholder='Live search' />
+            <input type='search' name='search' placeholder='Что ищем?' />
           </form>
         </div>
 
@@ -148,10 +148,15 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
 
         <div className={classes.HeaderRight}>
           {mobileView ? null : (
-            <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
+            <>
+              <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Log In</OrangeButton>
+              <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Sign Up</OrangeButton>
+            </>
           )}
 
           <div className={classes.Cart}>
+            <div className={classes.CartMessage}>
+            </div>
             <Link onClick={(e) => ifCartNotEmpty(e)} to='/checkout'>
               <ShoppingCartIcon />
               {amountOfPizzas > 0 ? <span className={classes.CartCounter}>{amountOfPizzas}</span> : null}
