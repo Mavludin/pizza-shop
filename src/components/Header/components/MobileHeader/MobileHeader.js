@@ -36,12 +36,12 @@ export const MobileHeader = ({
         <nav className={classes.TopMenu}>
           <ul>
             <li>
-              <Link onClick={scrollToMainHeading} to='/'>
+              <Link onClick={() => { scrollToMainHeading(); closeMobileMenu(); } } to='/'>
                 К пицце
               </Link>
             </li>
             <li>
-              <Link to='/'>Закуски</Link>
+              <Link onClick={closeMobileMenu} to='/'>Закуски</Link>
             </li>
           </ul>
         </nav>
@@ -53,7 +53,7 @@ export const MobileHeader = ({
         <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Вход</OrangeButton>
 
         <div className={classes.Cart}>
-          <Link to='/checkout'>
+          <Link to='/checkout' onClick={closeMobileMenu}>
             Корзина
             <div className={classes.Divider}></div>
             <div className={classes.CartCounter}>{amountOfPizzas}</div>

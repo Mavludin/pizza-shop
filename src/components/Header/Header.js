@@ -88,6 +88,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
           showMobileMenu={showMobileMenu}
           closeMobileMenu={closeMobileMenu}
           mobileMenuFlag={mobileMenuFlag}
+          setMobileMenuFlag={setMobileMenuFlag}
         />
 
         <div className={classes.Left}>
