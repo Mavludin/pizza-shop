@@ -72,6 +72,10 @@
 		display: inline-block;
 	}
 
+	.LeftCheck h2 {
+		justify-content: center;
+	}
+
 }
 
 @media screen and (max-width: 600px) {
