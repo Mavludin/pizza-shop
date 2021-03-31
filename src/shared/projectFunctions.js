@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 export const addToCart = (item, pos) => {
   let tempArray
   if (localStorage['pizzas']) {
@@ -11,4 +13,10 @@ export const addToCart = (item, pos) => {
   }
 
   localStorage.setItem('pizzas', JSON.stringify(tempArray))
+}
+
+export const useDocumentTitle = (title) => {
+  useEffect(() => {
+    document.title = title
+  }, [title])
 }

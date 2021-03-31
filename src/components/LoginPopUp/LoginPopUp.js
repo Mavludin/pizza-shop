@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { Fragment, useEffect } from 'react';
-import { OrangeButton } from '../../components/Styled/OrangeButton'
+import { Fragment, useEffect } from 'react'
+import { OrangeButton } from '../Styled/OrangeButton'
 import classes from './LoginPopUp.module.css'
 import closeIcon from '../../assets/images/close.svg'
 
@@ -22,10 +22,10 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
         validate={(values) => {
           const errors = {}
           if (values.login.length > 0 && values.login.length < 3) {
-            errors.login = 'Login not less than 3 characters'
+            errors.login = 'Длина логина не ниже 3 символов'
           }
           if (values.password.length > 0 && values.password.length < 8) {
-            errors.password = 'Password not less than 8 characters'
+            errors.password = 'Длина пароля не ниже 8 символов'
           }
           return errors
         }}
@@ -35,13 +35,13 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
         <Form className={classes.LoginForm}>
           <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
           <div>
-            <Field type='text' name='login' placeholder='Enter login' />
+            <Field type='text' name='login' placeholder='Логин' />
           </div>
           <div>
-            <Field type='password' name='password' placeholder='Enter password' />
+            <Field type='password' name='password' placeholder='Пароль' />
           </div>
           <div>
-            <OrangeButton type='submit'>Log-in</OrangeButton>
+            <OrangeButton type='submit'>Войти</OrangeButton>
             <div className={classes.ErrorBox}>
               <ErrorMessage name='login' component='div' className={classes.Error} />
               <ErrorMessage name='password' component='div' className={classes.Error} />
@@ -50,5 +50,5 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
         </Form>
       </Formik>
     </Fragment>
-  );
+  )
 }

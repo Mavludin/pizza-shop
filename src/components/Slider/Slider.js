@@ -7,12 +7,7 @@ import Three from '../../assets/images/3.jpg'
 
 export const Slider = () => {
   return (
-    <Carousel
-      showIndicators={false}
-      infiniteLoop={true}
-      autoPlay={true}
-      interval={5000}
-    >
+    <Carousel showIndicators={false} infiniteLoop={true} autoPlay={true} interval={5000}>
       <div>
         <img src={One} alt='First Slide' />
       </div>

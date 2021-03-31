@@ -9,7 +9,7 @@ footer {
   justify-content: space-between;
 }
 
-footer h3 {
+.Footer h3 {
 	text-align: left;
 	color: white;
 	position: relative;
@@ -19,7 +19,7 @@ footer h3 {
 	font-weight: 500;
 }
 
-footer h3::after {
+.Footer h3::after {
 	content: " ";
 	background: url('../../assets/images/footer-heading-border.jpg') bottom left repeat-x;
 	min-width: 100px;
@@ -30,20 +30,20 @@ footer h3::after {
 	position: absolute;
 }
 
-footer ul {
+.Footer ul {
 	padding: 0;
 }
 
-footer li {
-	margin-bottom: 2px;
+.Footer li + li {
+	margin-top: 2px;
 }
 
-footer a {
+.Footer a {
 	color: #a8a8a8;
 	transition: all 0.2s linear;
 }
 
-footer a:hover {
+.Footer a:hover {
 	color: rgb(209, 87, 0)
 }
 
@@ -58,7 +58,7 @@ footer a:hover {
 		justify-content: end;
 	}
 
-	footer h3 {
+	.Footer h3 {
 		margin-top: 10px;
 	}
 

@@ -4,23 +4,19 @@ import { Link } from 'react-router-dom'
 
 import classes from './Checkout.module.css'
 import { endpoints } from '../../shared/routerEndpoints'
-import deleteIcon from '../../assets/images/delete.svg'
 import { OrangeButton } from '../../components/Styled/OrangeButton'
-import { placed, removeItem } from '../../store/slices/count'
+import { decrement, increment, placed, removeItem } from '../../store/slices/count'
 import { useState } from 'react'
+import { useDocumentTitle } from '../../shared/projectFunctions'
+import { SentimentVeryDissatisfied } from '@material-ui/icons'
+import { CartItem } from './components/CartItem/CartItem'
 
-export const Checkout = () => {
+export const Checkout = ({ title }) => {
+  useDocumentTitle(title)
+
   const dispatch = useDispatch()
-  const placeOrder = () => dispatch(placed())
 
-  let arrayOfValues = []
-  for (let i in localStorage) {
-    if (localStorage.hasOwnProperty(i) && JSON.parse(localStorage[i]).amount) {
-      arrayOfValues.push(JSON.parse(localStorage[i]))
-    }
-  }
-
-  const [pizzas, setPizzas] = useState(JSON.parse(localStorage['pizzas']))
+  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('pizzas')))
 
   const deleteItem = (pos) => {
     const sure = window.confirm('You sure?')
@@ -33,55 +29,84 @@ export const Checkout = () => {
     }
   }
 
-  const pizzasFromTheCart = pizzas.map((item, pos) => {
-    if (item !== null) {
-      return (
-        <div className={classes.Item} key={item.id}>
-          <div className={classes.ItemContent}>
-            <div className={classes.Left}>
-              <img src={item.thumbnail} alt={item.title} />
-              <h4>{item.title}</h4>
-            </div>
-            <div className={classes.Right}>
-              <div className={classes.AmountControl}>
-                <button>-</button>
-                <div>{`${item.amount}`}</div>
-                <button>+</button>
-              </div>
-              <div className={classes.Price}>
-                {item.price}
-                <span>$</span>
-              </div>
-              <div className={classes.DeleteIcon}>
-                <img src={deleteIcon} alt='Delete an item' onClick={() => deleteItem(pos)} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    } else return null
-  })
+  const incrementItem = (pos) => {
+    const temp = [...pizzas]
+    temp[pos].amount++
+    setPizzas(temp)
+    localStorage.setItem('pizzas', JSON.stringify(temp))
+    dispatch(increment())
+  }
 
-  const totalPrice = pizzas.reduce((acc, item) => {
-    if (item !== null) {
-      return acc + item.price * item.amount
-    } else return acc + 0
-  }, 0)
+  const decrementItem = (pos) => {
+    if (pizzas[pos].amount > 1) {
+      const temp = [...pizzas]
+      temp[pos].amount--
+      setPizzas(temp)
+      localStorage.setItem('pizzas', JSON.stringify(temp))
+      dispatch(decrement())
+    }
+  }
+
+  const pizzasFromTheCart =
+    pizzas === null ? (
+      <h2>
+        Корзина пуста
+        <SentimentVeryDissatisfied />
+      </h2>
+    ) : (
+      pizzas.map((item, pos) => {
+        if (item !== null) {
+          return (
+            <CartItem
+              key={item.id}
+              title={item.title}
+              thumbnail={item.thumbnail}
+              price={item.price}
+              deleteItem={() => deleteItem(pos)}
+              incrementItem={() => incrementItem(pos)}
+              decrementItem={() => decrementItem(pos)}
+              amount={item.amount}
+            />
+          )
+        } else return null
+      })
+    )
+
+  const totalPrice =
+    pizzas === null
+      ? '0'
+      : pizzas.reduce((acc, item) => {
+          if (item !== null) {
+            return acc + item.price * item.amount
+          } else return acc + 0
+        }, 0)
+
+  const handleOrderPlacement = (e)  => {
+    if (!localStorage['amountOfPizzas']) {
+      alert('Корзина пуста')
+      e.preventDefault()
+    } else if (window.confirm('Оформляем?')) {
+      dispatch(placed())
+    } else e.preventDefault()
+  }
 
   return (
     <div className={classes.Checkout}>
-      <h1 datatype='Checkout'>Checkout</h1>
-      <p className={classes.TotalItems}>
-        <strong>Total items:</strong> {localStorage['amountOfPizzas']}
-      </p>
+      <h1 datatype='Checkout'>Оформление заказа</h1>
+      {localStorage['amountOfPizzas'] ? (
+        <p className={classes.TotalItems}>
+          <strong>Всего пицц:</strong> {localStorage['amountOfPizzas']}
+        </p>
+      ) : null}
+
       <div className={classes.Content}>
         <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
         <div className={classes.RightCheck}>
           <h2>
-            Total price: <span>{totalPrice}$</span>
+            Сумма: <span>{totalPrice}₽</span>
           </h2>
-          <Link to={endpoints.PLACED}>
-            <OrangeButton onClick={placeOrder}>Place Order</OrangeButton>
+          <Link to={endpoints.PLACED} onClick={handleOrderPlacement}>
+            <OrangeButton className={classes.Btn}>Оформить заказ</OrangeButton>
           </Link>
         </div>
       </div>

@@ -4,7 +4,7 @@
 	flex-wrap: wrap
 }
 
-figure {
+.ProductItem {
 	text-align: center;
 	border-radius: 10px;
 	width: 25%;
@@ -14,11 +14,11 @@ figure {
 	margin-bottom: 30px
 }
 
-figure > div {
+.ProductItem > div {
 	height: 55%
 }
 
-figure img {
+.ProductItem img {
 	position: relative;
 	top: 0;
 	width: 100%;
@@ -27,11 +27,11 @@ figure img {
 	transition: top 150ms ease-out 0s
 }
 
-figure img:hover {
+.ProductItem img:hover {
 	top: 3px;
 }
 
-figcaption {
+.ProductContent {
 	padding: 10px 5px;
 	text-align: left;
 	display: flex;
@@ -40,7 +40,7 @@ figcaption {
 	height: 45%
 }
 
-figure h2 {
+.ProductItem h2 {
 	font-size: 20px
 }
 
@@ -67,16 +67,16 @@ figure h2 {
 }
 
 @media screen and (max-width: 1199px) {
-	figure {
+	.ProductItem {
 		width: 33%
 	}
 }
 
 @media screen and (max-width: 900px) {
-	figure {
+	.ProductItem {
 		width: 50%
 	}
-	figcaption {
+	.ProductContent {
 		text-align: center
 	}
 	.Bottom {
@@ -88,16 +88,23 @@ figure h2 {
 	h1, h2 {
 		text-align: center;
 	}
-	figure {
-		width: 100%
+	.ProductItem {
+		width: 100%;
+		min-height: auto;
+	}
+	.ProductItem > div {
+		height: auto;
+	}
+	.ProductItem  img {
+		max-width: 200px;
+	}
+	.Description {
+		margin-bottom: 20px;
 	}
 }
 
 @media screen and (max-width: 414px) {
 	.Products {
 		justify-content: center;
-	}
-	figure {
-		width: 80%
 	}
 }

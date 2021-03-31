@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { productDataUrl } from './apiUrls'
+import { productDataUrl } from './apiUrls';
 
 export const fetchData = () => {
   let productsPromise = fetchProducts()
@@ -35,7 +35,6 @@ const wrapPromise = (promise) => {
 }
 
 const fetchProducts = async () => {
-  console.log('fetching pizzas...')
   const finalData = await axios
     .get(productDataUrl)
     .then((response) => {
