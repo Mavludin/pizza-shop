@@ -1,4 +1,4 @@
-.MainHeader {
+.mainHeader {
 	position: fixed;
 	z-index: 20;
 	left: 0;
@@ -8,77 +8,27 @@
 	height: 70px;
 }
 
-.HeaderContent {
+.headerContent {
 	display: flex;
 	justify-content: space-between;
 	align-items: center
 }
 
-.Left, .Right {
+.left, .right {
 	display: flex;
 	align-items: center
 }
 
-.Right {
+.right {
 	justify-content: inherit;
 }
 
-.Hamb {
-	display: none;
-	cursor: pointer;
+.lng button {
+	border-radius: 8px;
+	padding: 0 10px
 }
 
-.Bar1, .Bar2, .Bar3 {
-	width: 30px;
-	height: 4px;
-	background-color: #333;
-	margin: 4px 0;
-	transition: 0.4s;
-}
-
-.MobileMenu {
-	height: 100vh;
-	width: 280px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 100;
-	background-color: white;
-	text-align: center;
-	padding: 40px 10px;
-	transform: translateX(-100%);
-	transition: transform .2s ease-out;
-}
-
-.ShowMobileMenu {
-	box-shadow: 1px 1px 5px #000;
-	transform: translateX(0%);
-}
-
-.MobileMenu>div>svg {
-	color: black;
-	font-size: 26px;
-	position: absolute;
-	top: 1%;
-	right: 3%;
-	cursor: pointer;
-	transition: color .2s;
-}
-
-.MobileMenu>div>svg:hover {
-	color: #007eff;
-}
-
-.MobileMenu button {
-	width: 100%;
-	margin: 0;
-}
-
-.MobileMenu ul li:first-of-type {
-	border-bottom: 2px solid black;
-}
-
-.Logo a {
+.logo a {
 	color: #007eff;
 	font-size: 2.5em;
 	font-weight: 900;
@@ -88,22 +38,22 @@
 	display: inline-block
 }
 
-.Logo span {
+.logo span {
 	font-weight: 100;
 	color: #000;
 }
 
-.Logo img {
+.logo img {
 	width: 100%;
 	height: 100%;
 }
 
-.TopMenu ul li {
+.topMenu ul li {
 	display: inline-block;
 	margin: 0 10px;
 }
 
-.TopMenu a {
+.topMenu a {
 	text-transform: uppercase;
 	color: #000;
 	font-weight: 600;
@@ -112,11 +62,11 @@
 	font-size: 18px;
 }
 
-.TopMenu a:hover {
+.topMenu a:hover {
 	color: rgb(209, 87, 0)
 }
 
-.HeaderContent form {
+.headerContent form {
 	position: relative;
 	width: 250px;
 	border: 1px solid #ccc;
@@ -127,14 +77,14 @@
 	padding: 5px 5px 5px 10px
 }
 
-.HeaderContent form svg {
+.headerContent form svg {
 	color: gray;
 	height: auto;
 	flex-shrink: unset;
 	width: .8em;
 }
 
-.HeaderContent input {
+.headerContent input {
 	outline: none;
 	border: 0;
 	width: 100%;
@@ -143,18 +93,18 @@
 	margin-left: 5px;
 }
 
-.HeaderContent input:focus::placeholder {
+.headerContent input:focus::placeholder {
 	color: transparent;
 }
 
-.Cart {
+.cart {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
 }
 
-.Cart a {
+.cart a {
 	padding: 8px 20px;
 	background-color: rgb(255, 105, 0);
 	color: rgb(255, 255, 255);
@@ -170,12 +120,12 @@
 	transition-timing-function: ease-out;
 }
 
-.Cart a:hover {
+.cart a:hover {
 	background-color: rgb(232, 97, 0);
 	color: rgb(255, 255, 255);
 }
 
-.Divider {
+.divider {
 	height: 24px;
 	width: 1px;
 	margin: 0px 12px;
@@ -183,91 +133,88 @@
 	opacity: 0.4;
 }
 
-.Avatar {
+.avatar {
 	width: 50px;
 	border-radius: 50%;
 	border: 3px solid #ccc;
 	padding: 2px
 }
 
-.HeaderContent button {
+.headerContent button {
 	margin-right: 20px;
 }
 
 @media screen and (max-width: 900px) {
-	.MainHeader {
+	.mainHeader {
 		height: 120px;
 	}
-	.Left {
+	.left {
 		flex-flow: column;
 	}
-	.TopMenu ul {
+	.topMenu ul {
 		text-align: center;
 		padding: 0;
 	}
-	.Cart {
+	.cart {
 		padding: 5px 0;
 	}
-	.HeaderContent h1, .HeaderContent h2 {
+	.headerContent h1, .headerContent h2 {
 		font-size: 1.8em;
 	}
 }
 
 @media screen and (max-width: 830px) {
-	.MainHeader .container {
+	.mainHeader .container {
 		padding: 0;
 	}
-	.MainHeader {
+	.mainHeader {
 		height: 80px;
 	}
-	.HeaderContent {
+	.headerContent {
 		align-items: center;
 		padding: 10px 20px;
 		justify-content: space-around;
 	}
-	.Hamb {
-		display: block;
-	}
-	.Left {
+	.left {
 		display: none;
 	}
-	.TopMenu {
+	.topMenu {
 		display: block;
 		margin: 10px;
 	}
-	.TopMenu ul li {
+	.topMenu ul li {
 		display: block;
 		margin: 10px;
 	}
-	.TopMenu a {
+	.topMenu a {
 		font-size: 20px;
 		letter-spacing: 2px;
 	}
-	.Logo {
+	.logo {
 		margin-bottom: 5px;
 	}
-	.HeaderContent h1, .HeaderContent h2 {
+	.headerContent h1, .headerContent h2 {
 		text-align: center;
 	}
-	.HeaderContentform input {
+	.headerContentform input {
 		font-size: 0.8em;
 	}
 }
 
 @media screen and (max-width: 660px) {
-	.Cart {
+	.cart {
 		justify-content: center
 	}
 }
 
 @media screen and (max-width: 414px) {
-	.HeaderContent form {
+	.headerContent form {
 		max-width: 200px;
 	}
-	.HeaderContent input {
+	.headerContent input {
 		font-size: .9em;
 	}
-	.HeaderContent h1, .HeaderContent h2 {
+	.headerContent h1, .headerContent h2 {
 		font-size: 1.2em;
 	}
 }

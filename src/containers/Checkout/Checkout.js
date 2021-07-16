@@ -81,7 +81,7 @@ export const Checkout = ({ title }) => {
           } else return acc + 0
         }, 0)
 
-  const handleOrderPlacement = (e)  => {
+  const handleOrderPlacement = (e) => {
     if (!localStorage['amountOfPizzas']) {
       alert('Корзина пуста')
       e.preventDefault()
@@ -91,22 +91,22 @@ export const Checkout = ({ title }) => {
   }
 
   return (
-    <div className={classes.Checkout}>
+    <div className={classes.checkout}>
       <h1 datatype='Checkout'>Оформление заказа</h1>
       {localStorage['amountOfPizzas'] ? (
-        <p className={classes.TotalItems}>
+        <p className={classes.totalItems}>
           <strong>Всего пицц:</strong> {localStorage['amountOfPizzas']}
         </p>
       ) : null}
 
-      <div className={classes.Content}>
-        <div className={classes.LeftCheck}>{pizzasFromTheCart}</div>
-        <div className={classes.RightCheck}>
+      <div className={classes.content}>
+        <div className={classes.leftCheck}>{pizzasFromTheCart}</div>
+        <div className={classes.rightCheck}>
           <h2>
             Сумма: <span>{totalPrice}₽</span>
           </h2>
           <Link to={endpoints.PLACED} onClick={handleOrderPlacement}>
-            <OrangeButton className={classes.Btn}>Оформить заказ</OrangeButton>
+            <OrangeButton className={classes.placeOrderBtn}>Оформить заказ</OrangeButton>
           </Link>
         </div>
       </div>

@@ -1,4 +1,4 @@
-.Item {
+.item {
 	box-shadow: 5px 5px 10px #ccc;
 	border-radius: 10px;
 	padding: 10px;
@@ -11,31 +11,31 @@
 	transition: all 0.2s
 }
 
-.ItemContent {
+.itemContent {
 	display: flex;
   align-items: center;
 	width: 100%;
 	justify-content: space-between;
 }
 
-.Left {
+.left {
 	display: flex;
 	align-items: center;
 	width: 55%;
 }
 
-.Right {
+.right {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 45%;
 }
 
-.Item h4 {
+.item h4 {
 	margin: 0;
 }
 
-.AmountControl {
+.amountControl {
 	position: relative;
     width: 96px;
     height: 32px;
@@ -49,16 +49,16 @@
 		transition: .2s background-color;
 }
 
-.AmountControl:hover {
+.amountControl:hover {
 	background-color: rgb(255,210,179);
 }
 
 
-.AmountControl button:first-of-type {
+.amountControl button:first-of-type {
 	padding-bottom: 2px
 }
 
-.AmountControl button {
+.amountControl button {
 	margin: 0px;
     background: none;
     cursor: pointer;
@@ -75,7 +75,7 @@
 		transition: .2s
 }
 
-.AmountControl div {
+.amountControl div {
 	position: relative;
     z-index: 1;
     height: 100%;
@@ -90,37 +90,37 @@
 		font-size: 18px
 }
 
-.AmountControl button:hover { color: black }
+.amountControl button:hover { color: black }
 
-.Price span {
+.price span {
 	font-weight: 600;
 	color: black;
 	font-size: 1.2em
 }
 
-.Thumbnail {
+.thumbnail {
 	width: 70px;
 	margin-right: 10px;
 	border-radius: 5px;
 }
 
-.Item:hover {
+.item:hover {
 	background-color: #eaeaea;
 }
 
-.DeleteIcon img {
+.deleteIcon img {
 	width: 32px;
 	cursor: pointer;
 	transition: .2s
 }
 
-.DeleteIcon:hover img {
+.deleteIcon:hover img {
 	transform: scale(1.05)
 }
 
 @media screen and (max-width: 900px) {
 
-	.Item {
+	.item {
 		margin: 0 auto;
 		width: 90%;
 		margin-bottom: 10px;
@@ -129,22 +129,22 @@
 }
 
 @media screen and (max-width: 600px) {
-	.ItemContent {
+	.itemContent {
 		flex-direction: column;
 	}
 
-	.Left {
+	.left {
 		flex-direction: column;
 		width: 100%;
 	}
 
-	.Right {
+	.right {
 		width: 100%;
 		justify-content: space-around;
 		margin-top: 20px;
 	}
 
-	.Thumbnail {
+	.thumbnail {
 		margin: 0;
 	}
 }

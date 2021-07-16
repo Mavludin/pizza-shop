@@ -1,4 +1,4 @@
-.Placed {
+.placed {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -8,15 +8,15 @@
 	width: 100%;
 }
 
-.Placed h1, p {
+.placed h1, p {
 	margin: 0
 }
 
-.Desc {
+.desc {
   color: #797979;
 }
 
-.Placed img {
+.placed img {
 	width: 200px;
 	animation: carDrive 1s linear infinite;
 }
@@ -44,13 +44,13 @@
 }
 
 @media screen and (max-width: 700px) {
-	.Placed svg {
+	.placed svg {
 		font-size: 12em;
 	}
 }
 
 @media screen and (max-width: 414px) {
-	.Placed svg {
+	.placed svg {
 		font-size: 6em;
 	}
 }

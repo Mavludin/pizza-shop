@@ -1,15 +1,15 @@
-footer {
+.mainFooter {
 	background-color: #393939;
 	position: relative;
 	width: 100%;
 }
 
-.Footer {
+.footerContent {
   display: flex;
   justify-content: space-between;
 }
 
-.Footer h3 {
+.footerContent h3 {
 	text-align: left;
 	color: white;
 	position: relative;
@@ -19,7 +19,7 @@ footer {
 	font-weight: 500;
 }
 
-.Footer h3::after {
+.footerContent h3::after {
 	content: " ";
 	background: url('../../assets/images/footer-heading-border.jpg') bottom left repeat-x;
 	min-width: 100px;
@@ -30,35 +30,35 @@ footer {
 	position: absolute;
 }
 
-.Footer ul {
+.footerContent ul {
 	padding: 0;
 }
 
-.Footer li + li {
+.footerContent li + li {
 	margin-top: 2px;
 }
 
-.Footer a {
+.footerContent a {
 	color: #a8a8a8;
 	transition: all 0.2s linear;
 }
 
-.Footer a:hover {
+.footerContent a:hover {
 	color: rgb(209, 87, 0)
 }
 
 @media screen and (max-width: 900px) {
 
-	.Footer div {
+	.footerContent div {
 		width: 40%;
 	}
 
-	.Footer {
+	.footerContent {
 		flex-wrap: wrap;
 		justify-content: end;
 	}
 
-	.Footer h3 {
+	.footerContent h3 {
 		margin-top: 10px;
 	}
 
@@ -66,7 +66,7 @@ footer {
 
 @media screen and (max-width: 600px) {
 
-	.Footer div {
+	.footerContent div {
 		width: 100%;
 	}
 

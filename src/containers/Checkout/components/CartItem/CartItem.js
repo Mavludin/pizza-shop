@@ -11,23 +11,23 @@ export const CartItem = ({
   decrementItem,
 }) => {
   return (
-    <div className={classes.Item}>
-      <div className={classes.ItemContent}>
-        <div className={classes.Left}>
-          <img className={classes.Thumbnail} src={thumbnail} alt={title} />
+    <div className={classes.item}>
+      <div className={classes.itemContent}>
+        <div className={classes.left}>
+          <img className={classes.thumbnail} src={thumbnail} alt={title} />
           <h4>{title}</h4>
         </div>
-        <div className={classes.Right}>
-          <div className={classes.AmountControl}>
+        <div className={classes.right}>
+          <div className={classes.amountControl}>
             <button onClick={decrementItem}>-</button>
             <div>{`${amount}`}</div>
             <button onClick={incrementItem}>+</button>
           </div>
-          <div className={classes.Price}>
+          <div className={classes.price}>
             {price}
             <span>₽</span>
           </div>
-          <div className={classes.DeleteIcon}>
+          <div className={classes.deleteIcon}>
             <img src={deleteIcon} alt='Delete an item' onClick={deleteItem} />
           </div>
         </div>

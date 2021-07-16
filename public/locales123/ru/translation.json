@@ -1,0 +1,16 @@
+{
+  "header": {
+    "nav": {
+      "toPizza": "К пицце",
+      "snacks": "Закуски",
+      "cart": "Корзина"
+    },
+    "form": {
+      "searchPlaceholder": "Что ищем?"
+    },
+    "orangeButton": {
+      "logIn": "Вход"
+    }
+  },
+  "list_map": "<0><0>Мило</0><1>Симба</1></0>"
+}

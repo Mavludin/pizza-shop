@@ -1,0 +1,79 @@
+.hamb {
+	display: none;
+	cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+	width: 30px;
+	height: 4px;
+	background-color: #333;
+	margin: 4px 0;
+	transition: 0.4s;
+}
+
+.mobileMenu {
+	height: 100vh;
+	width: 280px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	background-color: white;
+	text-align: center;
+	padding: 40px 10px;
+	transform: translateX(-100%);
+	transition: transform .2s ease-out;
+}
+
+.showMobileMenu {
+	box-shadow: 1px 1px 5px #000;
+	transform: translateX(0%);
+}
+
+.mobileMenu>div>svg {
+	color: black;
+	font-size: 26px;
+	position: absolute;
+	top: 1%;
+	right: 3%;
+	cursor: pointer;
+	transition: color .2s;
+}
+
+.mobileMenu>div>svg:hover {
+	color: #007eff;
+}
+
+.mobileMenu button {
+	width: 100%;
+	margin: 0;
+}
+
+.mobileMenu ul li:first-of-type {
+	border-bottom: 2px solid black;
+}
+
+@media screen and (max-width: 900px) {
+	.mainHeader {
+		height: 120px;
+	}
+	.left {
+		flex-flow: column;
+	}
+	.topMenu ul {
+		text-align: center;
+		padding: 0;
+	}
+	.cart {
+		padding: 5px 0;
+	}
+	.headerContent h1, .headerContent h2 {
+		font-size: 1.8em;
+	}
+}
+
+@media screen and (max-width: 830px) {
+	.hamb {
+		display: block;
+	}
+}

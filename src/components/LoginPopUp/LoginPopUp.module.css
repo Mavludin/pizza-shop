@@ -1,4 +1,4 @@
-.Overlay {
+.overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@
   z-index: 25
 }
 
-.LoginForm {
+.loginForm {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -24,7 +24,7 @@
   width: 100%
 }
 
-.LoginForm img {
+.loginForm img {
   position: absolute;
   width: 16px;
   top: 6px;
@@ -32,35 +32,38 @@
   cursor: pointer
 }
 
-.Error {
+.error {
   color: crimson;
   font-weight: 600;
   margin-top: 10px;
   text-align: center
 }
 
-.LoginForm div+div {
+.loginForm div+div {
   margin-top: 10px
 }
 
-.LoginForm input {
+.loginForm input {
   width: 100%;
   padding: 5px 10px;
   border-radius: 10px;
-  border: 1px solid darkgrey
-
+  border: 1px solid darkgrey;
 }
 
-.LoginForm button {
+.loginForm input:focus, .loginForm button:focus {
+  outline: 1px solid black;
+}
+
+.loginForm button {
   width: 100%;
   color: white;
   background-color: rgb(209,87,0);
 }
 
-.LoginForm input:focus::placeholder {
+.loginForm input:focus::placeholder {
   color: transparent
 }
 
-.ErrorBox {
+.errorBox {
   width: 100%
 }

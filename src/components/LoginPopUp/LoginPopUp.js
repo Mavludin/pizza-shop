@@ -16,7 +16,7 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
 
   return (
     <Fragment>
-      <div onClick={() => setIsLoginPopUpVisible(false)} className={classes.Overlay}></div>
+      <div onClick={() => setIsLoginPopUpVisible(false)} className={classes.overlay}></div>
       <Formik
         initialValues={{ login: '', password: '' }}
         validate={(values) => {
@@ -32,21 +32,26 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
         onSubmit={(values) => {
           setIsLoginPopUpVisible(false)
         }}>
-        <Form className={classes.LoginForm}>
-          <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
-          <div>
-            <Field type='text' name='login' placeholder='Логин' />
-          </div>
-          <div>
-            <Field type='password' name='password' placeholder='Пароль' />
-          </div>
-          <div>
-            <OrangeButton type='submit'>Войти</OrangeButton>
-            <div className={classes.ErrorBox}>
-              <ErrorMessage name='login' component='div' className={classes.Error} />
-              <ErrorMessage name='password' component='div' className={classes.Error} />
+        <Form className={classes.loginForm} role="log-in">
+          <fieldset>
+            <legend>Log-in form</legend>
+            <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
+            <div>
+              <label htmlFor='popUpLogin'></label>
+              <Field type='text' name='login' placeholder='Логин' id='popUpLogin' autoFocus={true} />
             </div>
-          </div>
+            <div>
+              <label htmlFor='popUpPassword'></label>
+              <Field type='password' name='password' placeholder='Пароль' id='popUpPassword' />
+            </div>
+            <div>
+              <OrangeButton type='submit'>Войти</OrangeButton>
+              <div className={classes.errorBox}>
+                <ErrorMessage name='login' component='div' className={classes.error} />
+                <ErrorMessage name='password' component='div' className={classes.error} />
+              </div>
+            </div>
+          </fieldset>
         </Form>
       </Formik>
     </Fragment>

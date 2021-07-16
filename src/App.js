@@ -1,7 +1,5 @@
-import { createRef, useState } from 'react'
+import { createRef, useState, Suspense } from 'react'
 import './App.css'
-
-import { BrowserRouter } from 'react-router-dom'
 
 import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer/Footer'
@@ -14,20 +12,20 @@ export const App = () => {
   const [isLoginPopUpVisible, setIsLoginPopUpVisible] = useState(false)
 
   return (
-    <BrowserRouter>
-      <div className='App'>
+    <div className='app'>
+      <Suspense fallback="hey...">
         <Header mainHeading={mainHeading} setIsLoginPopUpVisible={setIsLoginPopUpVisible} />
-        <main>
-          <Routes mainHeading={mainHeading} />
-        </main>
-        <Footer />
-        {isLoginPopUpVisible ? (
-          <LoginPopUp
-            setIsLoginPopUpVisible={setIsLoginPopUpVisible}
-            isLoginPopUpVisible={isLoginPopUpVisible}
-          />
-        ) : null}
-      </div>
-    </BrowserRouter>
+      </Suspense>
+      <main>
+        <Routes mainHeading={mainHeading} />
+      </main>
+      <Footer />
+      {isLoginPopUpVisible ? (
+        <LoginPopUp
+          setIsLoginPopUpVisible={setIsLoginPopUpVisible}
+          isLoginPopUpVisible={isLoginPopUpVisible}
+        />
+      ) : null}
+    </div>
   )
 }

@@ -17,7 +17,7 @@ export const HomePage = ({ mainHeading, title }) => {
 
   const fallback = (
     <Overlay>
-      <img className={classes.Loader} src={preloaderIcon} alt='Preloader Icon' />
+      <img className={classes.loader} src={preloaderIcon} alt='Preloader Icon' />
     </Overlay>
   )
 

@@ -14,6 +14,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import { OrangeButton } from '../Styled/OrangeButton'
 import { MobileHeader } from './components/MobileHeader/MobileHeader'
 import { Overlay } from '../Styled/Overlay'
+import { useTranslation } from 'react-i18next'
 
 export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
   const [boxShadow, setBoxShadow] = useState('none')
@@ -79,9 +80,32 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
     setMobileMenuFlag(true)
   }
 
+  const { t, i18n } = useTranslation()
+
+  const [lngs, setLngs] = useState(
+    {
+      en: { nativeName: 'EN' },
+      ru: { nativeName: 'RU' },
+    }
+  )
+
+  console.log(lngs)
+
+  useEffect(() => {
+    i18n.services.backendConnector.backend.getLanguages((err, ret) => {
+      if (err) return "Couldn't get the languages"
+      setLngs(ret)
+    })
+  }, [i18n.services.backendConnector.backend])
+
+  const handleLangChange = (lng) => {
+    if (i18n.language !== lng) i18n.changeLanguage(lng)
+    else return
+  }
+
   return (
-    <header className={classes.MainHeader} style={{ boxShadow: boxShadow }}>
-      <div className={`container ${classes.HeaderContent}`}>
+    <header className={classes.mainHeader} style={{ boxShadow: boxShadow }}>
+      <div className={`container ${classes.headerContent}`}>
         <MobileHeader
           scrollToMainHeading={scrollToMainHeading}
           setIsLoginPopUpVisible={setIsLoginPopUpVisible}
@@ -91,45 +115,61 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
           setMobileMenuFlag={setMobileMenuFlag}
         />
 
-        <div className={classes.Left}>
-          <div className={classes.Logo}>
+        <div className={classes.left}>
+          <div className={classes.logo}>
             <Link onClick={closeMobileMenu} to='/'>
               <img src={logo} alt='Logo' />
             </Link>
           </div>
-          <nav className={classes.TopMenu}>
+          <nav className={classes.topMenu} aria-label="primary">
             <ul>
               <li>
                 <Link onClick={scrollToMainHeading} to='/'>
-                  К пицце
+                  {t('header.nav.toPizza')}
                 </Link>
               </li>
               <li>
-                <Link to='/'>Закуски</Link>
+                <Link to='/'>
+                  {t('header.nav.snacks')}
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <form>
+        <form role="search">
           <SearchIcon />
-          <input type='search' name='search' placeholder='Что ищем?' />
+          <label htmlFor="headerSearch"></label>
+          <input type='search' name='search' id="headerSearch" placeholder={t('header.form.searchPlaceholder')} />
         </form>
-        
+
         {mobileView ? null : (
-          <div className={classes.Right}>
-            <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Вход</OrangeButton>
-            <div className={classes.Cart}>
+          <div className={classes.right}>
+            <div className={classes.lng}>
+              {Object.keys(lngs).map((lng) => (
+                <button
+                  key={lng}
+                  style={{ fontWeight: i18n.language === lng ? 'bold' : 'normal' }}
+                  type='button'
+                  onClick={() => handleLangChange(lng)}>
+                  {lngs[lng].nativeName}
+                </button>
+              ))}
+            </div>
+            <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>
+              {t('header.orangeButton.logIn')}
+            </OrangeButton>
+            <div className={classes.cart}>
               <Link to='/checkout'>
-                Корзина
-                <div className={classes.Divider}></div>
-                <div className={classes.CartCounter}>{amountOfPizzas}</div>
+                {t('header.nav.cart')}
+                <div className={classes.divider}></div>
+                <div className={classes.cartCounter}>{amountOfPizzas}</div>
               </Link>
             </div>
           </div>
         )}
 
-        <img className={classes.Avatar} src={avatar} alt='Avatar' />
+        <img className={classes.avatar} src={avatar} alt='Avatar' />
       </div>
 
       {mobileMenuFlag ? <Overlay onClick={closeMobileMenu} /> : null}

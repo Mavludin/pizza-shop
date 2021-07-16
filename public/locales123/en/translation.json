@@ -1,0 +1,16 @@
+{
+  "header": {
+    "nav": {
+      "toPizza": "go to pizza",
+      "snacks": "snacks",
+      "cart": "Cart"
+    },
+    "form": {
+      "searchPlaceholder": "What to look up?"
+    },
+    "orangeButton": {
+      "logIn": "Log-In"
+    }
+  },
+  "list_map": "<0><0>Milo</0><1>Simba</1></0>"
+}

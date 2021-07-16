@@ -1,30 +1,30 @@
-.Content {
+.content {
 	display: flex;
 	justify-content: space-between;
 }
 
-.TotalItems {
+.totalItems {
 	font-size: 1.2em;
 	margin-bottom: 10px;
 }
 
-.LeftCheck {
+.leftCheck {
 	width: 60%;
 }
 
-.LeftCheck h2 {
+.leftCheck h2 {
 	display: flex;
 	align-items: center;
 }
 
-.LeftCheck h2 svg {
+.leftCheck h2 svg {
 	margin-left: 10px;
 	width: 2em;
 	height: 2em;
 	fill: #ff6900;
 }
 
-.RightCheck {
+.rightCheck {
 	width: 40%;
 	max-height: 155px;
 	box-shadow: 5px 5px 10px #ccc;
@@ -36,55 +36,55 @@
 	justify-content: space-around;
 }
 
-.RightCheck  h2 {
+.rightCheck  h2 {
 	margin: 0;
 }
 
-.RightCheck  h2 span {
+.rightCheck  h2 span {
 	color: #d15700;
 }
 
-.RightCheck button {
+.rightCheck button {
 	width: 100%;
 }
 
-.Btn {
+.placeOrderBtn {
 	margin-top: 10px;
 }
 
 
 @media screen and (max-width: 900px) {
 
-	.Content {
+	.content {
 		flex-wrap: wrap;
 	}
 
-	.Checkout h1, .TotalItems {
+	.checkout h1, .totalItems {
 		text-align: center;
 	}
 
-	.RightCheck {
+	.rightCheck {
 		text-align: center;
 	}
 
-	.LeftCheck, .RightCheck {
+	.leftCheck, .rightCheck {
 		width: 100%;
 		display: inline-block;
 	}
 
-	.LeftCheck h2 {
+	.leftCheck h2 {
 		justify-content: center;
 	}
 
 }
 
 @media screen and (max-width: 600px) {
-	.Left {
+	.left {
 		flex-direction: column;
 		width: 100%;
 	}
 
-	.Right {
+	.right {
 		width: 100%;
 		justify-content: space-around;
 		margin-top: 20px;

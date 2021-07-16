@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { OrangeButton } from '../../../../components/Styled/OrangeButton'
 import classes from './Products.module.css'
 
@@ -9,6 +10,9 @@ export const ProductItem = ({
   addToCart,
   incrementTheCart,
 }) => {
+
+  const { t, i18n } = useTranslation()
+
   return (
     <figure className={classes.ProductItem}>
       <div>
@@ -21,7 +25,7 @@ export const ProductItem = ({
         </div>
         <div className={classes.Bottom}>
           <p className={classes.Price}>
-            <span>Цена: </span>
+            <span>{t('products.price')}</span>
             {price} ₽
           </p>
           <OrangeButton
@@ -29,7 +33,7 @@ export const ProductItem = ({
               addToCart()
               incrementTheCart()
             }}>
-            + Добавить
+            {t('products.addButton.title')}
           </OrangeButton>
         </div>
       </figcaption>

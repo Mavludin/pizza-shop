@@ -5,8 +5,8 @@ import classes from './Footer.module.css'
 
 export const Footer = () => {
   return (
-    <footer>
-      <div className={`container ${classes.Footer}`}>
+    <footer className={classes.mainFooter}>
+      <div className={`container ${classes.footerContent}`}>
         {footerLinks.map((item) => {
           return (
             <div key={item.id}>

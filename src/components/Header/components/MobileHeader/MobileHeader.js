@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import classes from '../../Header.module.css'
+import mobile from './MobileHeader.module.css'
 import logo from '../../../../assets/images/logo.svg'
 
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
@@ -15,25 +16,25 @@ export const MobileHeader = ({
 }) => {
   let mobileMenuClasses = ''
 
-  if (mobileMenuFlag) mobileMenuClasses = `${classes.MobileMenu} ${classes.ShowMobileMenu}`
-  else mobileMenuClasses = classes.MobileMenu
+  if (mobileMenuFlag) mobileMenuClasses = `${mobile.mobileMenu} ${mobile.showMobileMenu}`
+  else mobileMenuClasses = mobile.mobileMenu
 
   const amountOfPizzas = useSelector((state) => state).amountOfPizzas
 
   return (
     <>
-      <div onClick={showMobileMenu} className={classes.Hamb}>
-        <div className={classes.Bar1}></div>
-        <div className={classes.Bar2}></div>
-        <div className={classes.Bar3}></div>
+      <div onClick={showMobileMenu} className={mobile.hamb}>
+        <div className={mobile.bar1}></div>
+        <div className={mobile.bar2}></div>
+        <div className={mobile.bar3}></div>
       </div>
       <div className={mobileMenuClasses}>
-        <div className={classes.Logo}>
+        <div className={classes.logo}>
           <Link onClick={closeMobileMenu} to='/'>
             <img src={logo} alt='Logo' />
           </Link>
         </div>
-        <nav className={classes.TopMenu}>
+        <nav className={classes.topMenu} aria-label="mobile">
           <ul>
             <li>
               <Link onClick={() => { scrollToMainHeading(); closeMobileMenu(); } } to='/'>
@@ -52,11 +53,11 @@ export const MobileHeader = ({
 
         <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Вход</OrangeButton>
 
-        <div className={classes.Cart}>
+        <div className={classes.cart}>
           <Link to='/checkout' onClick={closeMobileMenu}>
             Корзина
-            <div className={classes.Divider}></div>
-            <div className={classes.CartCounter}>{amountOfPizzas}</div>
+            <div className={classes.divider}></div>
+            <div className={classes.cartCounter}>{amountOfPizzas}</div>
           </Link>
         </div>
       </div>
