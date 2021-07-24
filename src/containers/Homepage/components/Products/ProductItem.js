@@ -11,7 +11,7 @@ export const ProductItem = ({
   incrementTheCart,
 }) => {
 
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <figure className={classes.ProductItem}>

@@ -84,12 +84,10 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
 
   const [lngs, setLngs] = useState(
     {
-      en: { nativeName: 'EN' },
-      ru: { nativeName: 'RU' },
+      en: { nativeName: 'en' },
+      ru: { nativeName: 'ru' },
     }
   )
-
-  console.log(lngs)
 
   useEffect(() => {
     i18n.services.backendConnector.backend.getLanguages((err, ret) => {
@@ -151,7 +149,9 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
                   key={lng}
                   style={{ fontWeight: i18n.language === lng ? 'bold' : 'normal' }}
                   type='button'
-                  onClick={() => handleLangChange(lng)}>
+                  onClick={() => {
+                    handleLangChange(lng)
+                  }}>
                   {lngs[lng].nativeName}
                 </button>
               ))}
