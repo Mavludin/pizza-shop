@@ -2,7 +2,7 @@ import classes from './Placed.module.css'
 
 import car from '../../assets/images/car.svg'
 import { useDocumentTitle } from '../../shared/projectFunctions'
-import { Trans } from 'react-i18next'
+// import { Trans } from 'react-i18next'
 
 export const Placed = ({ title }) => {
   useDocumentTitle(title)
@@ -12,12 +12,12 @@ export const Placed = ({ title }) => {
       <img src={car} alt='pizza car' />
       <p className={classes.desc}>Мы уже едем к вам!</p>
 
-      <Trans i18nKey="list_map">
+      {/* <Trans i18nKey="list_map">
         <ul>
           <li>Milo</li>
           <li>Simba</li>
         </ul>
-      </Trans>
+      </Trans> */}
     </div>
   )
 }

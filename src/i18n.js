@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const locizeOptions = {
   projectId: process.env.REACT_APP_LOCIZE_PROJECTID,
-  apiKey: undefined,
+  apiKey: process.env.REACT_APP_LOCIZE_APIKEY,
   referenceLng: process.env.REACT_APP_LOCIZE_REFLNG,
   version: process.env.REACT_APP_LOCIZE_VERSION
 };
@@ -17,7 +17,7 @@ i18n
   .use(initReactI18next)
   .use(Backend)
   .init({
-    debug: true,
+    debug: !isProduction,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
