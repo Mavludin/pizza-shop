@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { useDocumentTitle } from '../../shared/projectFunctions'
 import { SentimentVeryDissatisfied } from '@material-ui/icons'
 import { CartItem } from './components/CartItem/CartItem'
+import { useTranslation } from 'react-i18next'
 
 export const Checkout = ({ title }) => {
   useDocumentTitle(title)
@@ -47,10 +48,12 @@ export const Checkout = ({ title }) => {
     }
   }
 
+  const { t } = useTranslation()
+
   const pizzasFromTheCart =
     pizzas === null ? (
       <h2>
-        Корзина пуста
+        {t('checkout.cartEmptiness')}
         <SentimentVeryDissatisfied />
       </h2>
     ) : (
@@ -93,11 +96,11 @@ export const Checkout = ({ title }) => {
   return (
     <div className={classes.checkout}>
       <h1 datatype='Checkout'>Оформление заказа</h1>
-      {localStorage['amountOfPizzas'] ? (
+      {localStorage['amountOfPizzas'] && (
         <p className={classes.totalItems}>
           <strong>Всего пицц:</strong> {localStorage['amountOfPizzas']}
         </p>
-      ) : null}
+      )}
 
       <div className={classes.content}>
         <div className={classes.leftCheck}>{pizzasFromTheCart}</div>

@@ -82,16 +82,12 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
 
   const { t, i18n } = useTranslation()
 
-  const [lngs, setLngs] = useState(
-    {
-      en: { nativeName: 'en' },
-      ru: { nativeName: 'ru' },
-    }
-  )
+  const [lngs, setLngs] = useState({})
 
   useEffect(() => {
     i18n.services.backendConnector.backend.getLanguages((err, ret) => {
       if (err) return "Couldn't get the languages"
+      console.log(ret)
       setLngs(ret)
     })
   }, [i18n.services.backendConnector.backend])
