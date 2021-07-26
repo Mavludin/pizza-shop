@@ -17,13 +17,10 @@ i18n
   .use(initReactI18next)
   .use(Backend)
   .init({
-    debug: !isProduction,
+    debug: true,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
-    },
-    detection: {
-      caches: ['localStorage', 'cookie']
     },
     backend: locizeOptions,
     saveMissing: !isProduction
