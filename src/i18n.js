@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const locizeOptions = {
   projectId: process.env.REACT_APP_LOCIZE_PROJECTID,
-  apiKey: process.env.REACT_APP_LOCIZE_APIKEY,
+  apiKey: undefined,
   referenceLng: process.env.REACT_APP_LOCIZE_REFLNG,
   version: process.env.REACT_APP_LOCIZE_VERSION
 };
