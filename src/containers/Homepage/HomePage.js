@@ -20,8 +20,8 @@ export const HomePage = ({ mainHeading, title }) => {
   const fallback = (
     <Grid container wrap='wrap' classes={{container: styles.container}}>
       {Array.from(new Array(8)).map((item, index) => (
-        <Box key={index} classes={{root: styles.root}} width='25%' my={5} marginBottom={0} padding='0px 50px 0 50px'>
-          <Skeleton margin={0} borderradius='50%' variant='circle' width={200} height={200} />
+        <Box key={index} classes={{root: styles.root}}  padding='0px 50px 0 50px'>
+          <Skeleton margin={0} borderradius='50%' variant='circle' width={150} height={150} />
           <Box pt={0.5}>
             <Skeleton />
             <Skeleton width='60%' />

@@ -19,6 +19,11 @@
   justify-content: space-between;
 }
 
+.root {
+  width: 25%;
+  margin: 10px 0
+}
+
 @media screen and (max-width: 900px) {
   .container {
     justify-content: center;
