@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { OrangeButton } from '../../../../components/Styled/OrangeButton'
+import { detectJustAddedPizza } from '../../../../store/slices/cart'
 import classes from './Products.module.css'
 
 export const ProductItem = ({
@@ -9,9 +11,18 @@ export const ProductItem = ({
   price,
   addToCart,
   incrementTheCart,
+  setOpenSnackBar,
+  openSnackBar
 }) => {
 
   const { t } = useTranslation()
+
+  const handleSnackBar = () => {
+    if (!openSnackBar) setOpenSnackBar(true)
+    return
+  }
+
+  const dispatch = useDispatch()
 
   return (
     <figure className={classes.ProductItem}>
@@ -32,6 +43,8 @@ export const ProductItem = ({
             onClick={() => {
               addToCart()
               incrementTheCart()
+              handleSnackBar()
+              dispatch(detectJustAddedPizza(title))
             }}>
             {t('products.addButton.title')}
           </OrangeButton>

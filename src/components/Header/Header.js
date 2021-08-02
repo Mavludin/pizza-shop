@@ -15,11 +15,12 @@ import { OrangeButton } from '../Styled/OrangeButton'
 import { MobileHeader } from './components/MobileHeader/MobileHeader'
 import { Overlay } from '../Styled/Overlay'
 import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher'
 
 export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
   const [boxShadow, setBoxShadow] = useState('none')
 
-  const amountOfPizzas = useSelector((state) => state).amountOfPizzas
+  const amountOfPizzas = useSelector((state) => state).countReducer.amountOfPizzas
   const [mobileMenuFlag, setMobileMenuFlag] = useState(false)
   const [mobileView, setMobileView] = useState(false)
 
@@ -39,12 +40,12 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
   }, [])
 
   useEffect(() => {
-    if (window.innerWidth <= 660) {
+    if (window.innerWidth <= 830) {
       setMobileView(true)
     } else setMobileView(false)
 
     const handleInnerWidth = () => {
-      if (window.matchMedia('(max-width: 660px)').matches) {
+      if (window.matchMedia('(max-width: 830px)').matches) {
         setMobileView(true)
       } else {
         if (mobileView) setMobileView(false)
@@ -80,23 +81,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
     setMobileMenuFlag(true)
   }
 
-  const { t, i18n } = useTranslation()
-
-  const [lngs, setLngs] = useState({})
-
-  useEffect(() => {
-    i18n.services.backendConnector.backend.getLanguages((err, ret) => {
-      if (err) return "Couldn't get the languages"
-      ret.en.nativeName = 'EN'
-      ret.ru.nativeName = 'RU'
-      setLngs(ret)
-    })
-  }, [i18n.services.backendConnector.backend])
-
-  const handleLangChange = (lng) => {
-    if (i18n.language !== lng) i18n.changeLanguage(lng)
-    else return
-  }
+  const { t } = useTranslation()
 
   return (
     <header className={classes.mainHeader} style={{ boxShadow: boxShadow }}>
@@ -141,17 +126,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
         {mobileView ? null : (
           <div className={classes.right}>
             <div className={classes.lng}>
-              {Object.keys(lngs).map((lng) => (
-                <button
-                  key={lng}
-                  style={{ fontWeight: i18n.language === lng ? 'bold' : 'normal' }}
-                  type='button'
-                  onClick={() => {
-                    handleLangChange(lng)
-                  }}>
-                  {lngs[lng].nativeName}
-                </button>
-              ))}
+              <LanguageSwitcher />
             </div>
             <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>
               {t('header.orangeButton.logIn')}

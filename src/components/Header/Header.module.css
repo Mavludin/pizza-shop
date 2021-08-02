@@ -100,7 +100,7 @@
 .cart {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	position: relative;
 }
 
@@ -144,16 +144,19 @@
 	margin-right: 20px;
 }
 
+@media screen and (max-width: 991px) {
+	.topMenu ul {
+		text-align: center;
+		padding: 0;
+	}
+}
+
 @media screen and (max-width: 900px) {
 	.mainHeader {
 		height: 120px;
 	}
 	.left {
 		flex-flow: column;
-	}
-	.topMenu ul {
-		text-align: center;
-		padding: 0;
 	}
 	.cart {
 		padding: 5px 0;
@@ -198,12 +201,6 @@
 	}
 	.headerContentform input {
 		font-size: 0.8em;
-	}
-}
-
-@media screen and (max-width: 660px) {
-	.cart {
-		justify-content: center
 	}
 }
 

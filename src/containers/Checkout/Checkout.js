@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
@@ -17,7 +17,8 @@ export const Checkout = ({ title }) => {
 
   const dispatch = useDispatch()
 
-  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('pizzas')))
+  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('pizzas')) || [])
+  const amountOfPizzas = useSelector(state => state).countReducer.amountOfPizzas
 
   const deleteItem = (pos) => {
     const sure = window.confirm('You sure?')
@@ -25,8 +26,13 @@ export const Checkout = ({ title }) => {
       dispatch(removeItem(pizzas[pos].amount))
       const temp = [...pizzas]
       temp.splice(pos, 1)
-      setPizzas(temp)
-      localStorage.setItem('pizzas', JSON.stringify(temp))
+      if (temp.every(item => item === null)) {
+        setPizzas([])
+        localStorage.removeItem('pizzas')
+      } else {
+        setPizzas(temp)
+        localStorage.setItem('pizzas', JSON.stringify(temp))
+      }
     }
   }
 
@@ -51,7 +57,7 @@ export const Checkout = ({ title }) => {
   const { t } = useTranslation()
 
   const pizzasFromTheCart =
-    pizzas === null ? (
+    !pizzas.length ? (
       <h2>
         {t('checkout.cartEmptiness')}
         <SentimentVeryDissatisfied />
@@ -85,7 +91,7 @@ export const Checkout = ({ title }) => {
         }, 0)
 
   const handleOrderPlacement = (e) => {
-    if (!localStorage['amountOfPizzas']) {
+    if (!amountOfPizzas) {
       alert('Корзина пуста')
       e.preventDefault()
     } else if (window.confirm('Оформляем?')) {
@@ -96,9 +102,9 @@ export const Checkout = ({ title }) => {
   return (
     <div className={classes.checkout}>
       <h1 datatype='Checkout'>Оформление заказа</h1>
-      {localStorage['amountOfPizzas'] && (
+      {amountOfPizzas > 0 && (
         <p className={classes.totalItems}>
-          <strong>Всего пицц:</strong> {localStorage['amountOfPizzas']}
+          <strong>Всего пицц:</strong> <span className={classes.orangeText}>{amountOfPizzas}</span>
         </p>
       )}
 
@@ -106,7 +112,7 @@ export const Checkout = ({ title }) => {
         <div className={classes.leftCheck}>{pizzasFromTheCart}</div>
         <div className={classes.rightCheck}>
           <h2>
-            Сумма: <span>{totalPrice}₽</span>
+            Сумма: <span className={classes.orangeText}>{totalPrice}₽</span>
           </h2>
           <Link to={endpoints.PLACED} onClick={handleOrderPlacement}>
             <OrangeButton className={classes.placeOrderBtn}>Оформить заказ</OrangeButton>

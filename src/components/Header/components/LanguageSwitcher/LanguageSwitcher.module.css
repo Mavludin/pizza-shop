@@ -1,0 +1,10 @@
+.label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 830px) {
+  .root {
+    align-items: center;
+  }
+}

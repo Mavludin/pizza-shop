@@ -12,7 +12,7 @@ export const App = () => {
   const [isLoginPopUpVisible, setIsLoginPopUpVisible] = useState(false)
 
   return (
-    <div className='app'>
+    <div className='App'>
       <Suspense fallback="hey...">
         <Header mainHeading={mainHeading} setIsLoginPopUpVisible={setIsLoginPopUpVisible} />
       </Suspense>

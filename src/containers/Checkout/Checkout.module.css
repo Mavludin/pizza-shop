@@ -40,8 +40,12 @@
 	margin: 0;
 }
 
-.rightCheck  h2 span {
+.orangeText {
 	color: #d15700;
+}
+
+span.orangeText {
+	font-weight: 600;
 }
 
 .rightCheck button {

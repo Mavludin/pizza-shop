@@ -6,6 +6,7 @@ import logo from '../../../../assets/images/logo.svg'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import { OrangeButton } from '../../../Styled/OrangeButton'
 import { useSelector } from 'react-redux'
+import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher'
 
 export const MobileHeader = ({
   closeMobileMenu,
@@ -19,7 +20,7 @@ export const MobileHeader = ({
   if (mobileMenuFlag) mobileMenuClasses = `${mobile.mobileMenu} ${mobile.showMobileMenu}`
   else mobileMenuClasses = mobile.mobileMenu
 
-  const amountOfPizzas = useSelector((state) => state).amountOfPizzas
+  const amountOfPizzas = useSelector((state) => state).countReducer.amountOfPizzas
 
   return (
     <>
@@ -46,6 +47,8 @@ export const MobileHeader = ({
             </li>
           </ul>
         </nav>
+
+        <LanguageSwitcher />
 
         <div onClick={closeMobileMenu}>
           <HighlightOffIcon />

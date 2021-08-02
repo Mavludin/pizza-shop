@@ -14,3 +14,22 @@
     transform:rotate(360deg);
   }
 }
+
+.container {
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    justify-content: center;
+  }
+  .root {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .root {
+    width: 100%;
+  }
+}

@@ -33,25 +33,22 @@ export const LoginPopUp = ({ setIsLoginPopUpVisible, isLoginPopUpVisible }) => {
           setIsLoginPopUpVisible(false)
         }}>
         <Form className={classes.loginForm} role="log-in">
-          <fieldset>
-            <legend>Log-in form</legend>
-            <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
-            <div>
-              <label htmlFor='popUpLogin'></label>
-              <Field type='text' name='login' placeholder='Логин' id='popUpLogin' autoFocus={true} />
+          <img src={closeIcon} alt='Close' onClick={() => setIsLoginPopUpVisible(false)} />
+          <div>
+            <label htmlFor='popUpLogin'></label>
+            <Field type='text' name='login' placeholder='Логин' id='popUpLogin' autoFocus={true} />
+          </div>
+          <div>
+            <label htmlFor='popUpPassword'></label>
+            <Field type='password' name='password' placeholder='Пароль' id='popUpPassword' />
+          </div>
+          <div>
+            <OrangeButton type='submit'>Войти</OrangeButton>
+            <div className={classes.errorBox}>
+              <ErrorMessage name='login' component='div' className={classes.error} />
+              <ErrorMessage name='password' component='div' className={classes.error} />
             </div>
-            <div>
-              <label htmlFor='popUpPassword'></label>
-              <Field type='password' name='password' placeholder='Пароль' id='popUpPassword' />
-            </div>
-            <div>
-              <OrangeButton type='submit'>Войти</OrangeButton>
-              <div className={classes.errorBox}>
-                <ErrorMessage name='login' component='div' className={classes.error} />
-                <ErrorMessage name='password' component='div' className={classes.error} />
-              </div>
-            </div>
-          </fieldset>
+          </div>
         </Form>
       </Formik>
     </Fragment>

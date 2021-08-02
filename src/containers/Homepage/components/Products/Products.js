@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { increment } from '../../../../store/slices/count'
 import { ProductItem } from './ProductItem'
 
-export const Products = ({ productData }) => {
+export const Products = ({ productData, setOpenSnackBar, openSnackBar }) => {
   const pizzas = productData.pizzas.read()
 
   const addToCart = (item, pos) => {
@@ -25,6 +25,7 @@ export const Products = ({ productData }) => {
 
   return (
     <div className={classes.Products}>
+
       {pizzas.map((item, pos) => {
         return (
           <ProductItem
@@ -36,9 +37,12 @@ export const Products = ({ productData }) => {
             price={item.price}
             amount={item.amount}
             description={item.description}
+            openSnackBar={openSnackBar}
+            setOpenSnackBar={setOpenSnackBar}
           />
         )
       })}
+
     </div>
   )
 }
