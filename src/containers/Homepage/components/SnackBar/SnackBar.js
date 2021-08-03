@@ -33,7 +33,7 @@ export const SnackBar = ({ openSnackBar, setOpenSnackBar }) => {
       open={openSnackBar}
       onClose={handleClose}
       autoHideDuration={2000}
-      message={"Добавлен:" + justAddedPizza}
+      message={"Добавлен: " + justAddedPizza}
       action={
         <React.Fragment>
           <Button

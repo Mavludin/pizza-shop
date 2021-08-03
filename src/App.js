@@ -1,4 +1,4 @@
-import { createRef, useState, Suspense } from 'react'
+import { createRef, useState } from 'react'
 import './App.css'
 
 import { Header } from './components/Header/Header'
@@ -13,9 +13,7 @@ export const App = () => {
 
   return (
     <div className='App'>
-      <Suspense fallback="hey...">
         <Header mainHeading={mainHeading} setIsLoginPopUpVisible={setIsLoginPopUpVisible} />
-      </Suspense>
       <main>
         <Routes mainHeading={mainHeading} />
       </main>

@@ -1,0 +1,40 @@
+.loader {
+  width: 100px;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+.container {
+  justify-content: space-between;
+}
+
+.root {
+  width: 25%;
+  margin: 10px 0
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    justify-content: center;
+  }
+  .root {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .root {
+    width: 100%;
+  }
+}

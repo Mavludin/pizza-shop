@@ -2,9 +2,12 @@ import classes from './Products.module.css'
 import { useDispatch } from 'react-redux'
 import { increment } from '../../../../store/slices/count'
 import { ProductItem } from './ProductItem'
+import { useQueryClient } from 'react-query'
 
-export const Products = ({ productData, setOpenSnackBar, openSnackBar }) => {
-  const pizzas = productData.pizzas.read()
+export const Products = ({ setOpenSnackBar, openSnackBar }) => {
+
+  const queryClient = useQueryClient('pizzas')
+  const pizzas = queryClient.getQueryData('pizzas')
 
   const addToCart = (item, pos) => {
     let tempArray;

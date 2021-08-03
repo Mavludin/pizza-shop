@@ -7,6 +7,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import { OrangeButton } from '../../../Styled/OrangeButton'
 import { useSelector } from 'react-redux'
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
 
 export const MobileHeader = ({
   closeMobileMenu,
@@ -21,6 +22,8 @@ export const MobileHeader = ({
   else mobileMenuClasses = mobile.mobileMenu
 
   const amountOfPizzas = useSelector((state) => state).countReducer.amountOfPizzas
+
+  const { t } = useTranslation()
 
   return (
     <>
@@ -39,11 +42,11 @@ export const MobileHeader = ({
           <ul>
             <li>
               <Link onClick={() => { scrollToMainHeading(); closeMobileMenu(); } } to='/'>
-                К пицце
+                {t('header.nav.toPizza')}
               </Link>
             </li>
             <li>
-              <Link onClick={closeMobileMenu} to='/'>Закуски</Link>
+              <Link onClick={closeMobileMenu} to='/'>{t('header.nav.snacks')}</Link>
             </li>
           </ul>
         </nav>
@@ -54,11 +57,11 @@ export const MobileHeader = ({
           <HighlightOffIcon />
         </div>
 
-        <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>Вход</OrangeButton>
+        <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>{t('header.orangeButton.logIn')}</OrangeButton>
 
         <div className={classes.cart}>
           <Link to='/checkout' onClick={closeMobileMenu}>
-            Корзина
+            {t('header.nav.cart')}
             <div className={classes.divider}></div>
             <div className={classes.cartCounter}>{amountOfPizzas}</div>
           </Link>

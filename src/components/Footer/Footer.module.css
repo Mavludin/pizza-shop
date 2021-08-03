@@ -55,7 +55,6 @@
 
 	.footerContent {
 		flex-wrap: wrap;
-		justify-content: end;
 	}
 
 	.footerContent h3 {

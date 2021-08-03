@@ -10,12 +10,17 @@ import { globalStore } from './store';
 // import i18n (needs to be bundled ;))
 import './i18n';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <Provider store={globalStore}>
     <BrowserRouter>
       <React.Suspense fallback="...wait">
-        <App /> 
+        <QueryClientProvider client={queryClient}>
+          <App /> 
+        </QueryClientProvider>
       </React.Suspense>
     </BrowserRouter>
   </Provider>, 
