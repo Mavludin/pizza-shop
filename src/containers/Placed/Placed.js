@@ -1,7 +1,7 @@
 import classes from './Placed.module.css'
 
 import car from '../../assets/images/car.svg'
-import { useDocumentTitle } from '../../shared/projectFunctions'
+import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 // import { Trans } from 'react-i18next'
 
 export const Placed = ({ title }) => {

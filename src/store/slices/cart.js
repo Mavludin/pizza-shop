@@ -9,7 +9,6 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     detectJustAddedPizza: (state, { payload }) => {
-      console.log(payload)
       state.justAddedPizza = payload
     }
   }

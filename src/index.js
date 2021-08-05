@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <Provider store={globalStore}>
     <BrowserRouter>
-      <React.Suspense fallback="...wait">
+      <React.Suspense fallback={null}>
         <QueryClientProvider client={queryClient}>
           <App /> 
         </QueryClientProvider>

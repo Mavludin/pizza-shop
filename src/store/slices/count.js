@@ -17,7 +17,7 @@ const countSlice = createSlice({
     },
     placed: (state) => {
       state.amountOfPizzas = 0;
-      localStorage.removeItem('pizzas');
+      localStorage.removeItem('checkoutPizzas');
       localStorage.removeItem('amountOfPizzas');
     },
     removeItem: (state, { payload }) => {

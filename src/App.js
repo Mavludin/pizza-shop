@@ -13,7 +13,10 @@ export const App = () => {
 
   return (
     <div className='App'>
-        <Header mainHeading={mainHeading} setIsLoginPopUpVisible={setIsLoginPopUpVisible} />
+      <Header
+        mainHeading={mainHeading}
+        setIsLoginPopUpVisible={setIsLoginPopUpVisible}
+      />
       <main>
         <Routes mainHeading={mainHeading} />
       </main>

@@ -2,17 +2,13 @@ import classes from './Products.module.css'
 import { useDispatch } from 'react-redux'
 import { increment } from '../../../../store/slices/count'
 import { ProductItem } from './ProductItem'
-import { useQueryClient } from 'react-query'
 
-export const Products = ({ setOpenSnackBar, openSnackBar }) => {
-
-  const queryClient = useQueryClient('pizzas')
-  const pizzas = queryClient.getQueryData('pizzas')
+export const Products = ({ pizzas, setOpenSnackBar, openSnackBar }) => {
 
   const addToCart = (item, pos) => {
     let tempArray;
-    if (localStorage['pizzas']) {
-      tempArray = JSON.parse(localStorage.getItem('pizzas'))
+    if (localStorage['checkoutPizzas']) {
+      tempArray = JSON.parse(localStorage.getItem('checkoutPizzas'))
       if (tempArray[pos]) tempArray[pos].amount += 1
       else tempArray[pos] = { ...item, amount: 1 }
     } else {
@@ -20,7 +16,7 @@ export const Products = ({ setOpenSnackBar, openSnackBar }) => {
       const pizza = { ...item, amount: 1 }
       tempArray[pos] = pizza
     }
-    localStorage.setItem('pizzas', JSON.stringify(tempArray))
+    localStorage.setItem('checkoutPizzas', JSON.stringify(tempArray))
   }
 
   const dispatch = useDispatch()

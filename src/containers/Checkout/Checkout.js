@@ -7,17 +7,17 @@ import { endpoints } from '../../shared/routerEndpoints'
 import { OrangeButton } from '../../components/Styled/OrangeButton'
 import { decrement, increment, placed, removeItem } from '../../store/slices/count'
 import { useState } from 'react'
-import { useDocumentTitle } from '../../shared/projectFunctions'
 import { SentimentVeryDissatisfied } from '@material-ui/icons'
 import { CartItem } from './components/CartItem/CartItem'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 
 export const Checkout = ({ title }) => {
   useDocumentTitle(title)
 
   const dispatch = useDispatch()
 
-  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('pizzas')) || [])
+  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('checkoutPizzas')) || [])
   const amountOfPizzas = useSelector(state => state).countReducer.amountOfPizzas
 
   const deleteItem = (pos) => {
@@ -28,10 +28,10 @@ export const Checkout = ({ title }) => {
       temp.splice(pos, 1)
       if (temp.every(item => item === null)) {
         setPizzas([])
-        localStorage.removeItem('pizzas')
+        localStorage.removeItem('checkoutPizzas')
       } else {
         setPizzas(temp)
-        localStorage.setItem('pizzas', JSON.stringify(temp))
+        localStorage.setItem('checkoutPizzas', JSON.stringify(temp))
       }
     }
   }
@@ -40,7 +40,7 @@ export const Checkout = ({ title }) => {
     const temp = [...pizzas]
     temp[pos].amount++
     setPizzas(temp)
-    localStorage.setItem('pizzas', JSON.stringify(temp))
+    localStorage.setItem('checkoutPizzas', JSON.stringify(temp))
     dispatch(increment())
   }
 
@@ -49,7 +49,7 @@ export const Checkout = ({ title }) => {
       const temp = [...pizzas]
       temp[pos].amount--
       setPizzas(temp)
-      localStorage.setItem('pizzas', JSON.stringify(temp))
+      localStorage.setItem('checkoutPizzas', JSON.stringify(temp))
       dispatch(decrement())
     }
   }
