@@ -9,6 +9,7 @@ import { SnackBar } from './components/SnackBar/SnackBar'
 import { SkeletonFallback } from '../../components/SkeletonFallback/SkeletonFallback'
 import { useGetPizzas } from '../../hooks/useGetPizzas'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
+import { useTranslation } from 'react-i18next'
 
 export const HomePage = ({ mainHeading, title }) => {
   useDocumentTitle(title)
@@ -17,12 +18,12 @@ export const HomePage = ({ mainHeading, title }) => {
 
   const [openSnackBar, setOpenSnackBar] = useState(false)
 
+  const { t } = useTranslation()
+
   return (
     <Fragment>
       <Slider />
-      <h1 datatype='Pizza' ref={mainHeading}>
-        Пицца
-      </h1>
+      <h1 ref={mainHeading}>{t('heading.homePage')}</h1>
       {isLoading ? <SkeletonFallback /> :
         (
           <Products

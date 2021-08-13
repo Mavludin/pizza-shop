@@ -2,11 +2,11 @@ import classes from './Products.module.css'
 import { useDispatch } from 'react-redux'
 import { increment } from '../../../../store/slices/count'
 import { ProductItem } from './ProductItem'
+import { useTranslation } from 'react-i18next'
 
-export const Products = ({ pizzas, setOpenSnackBar, openSnackBar }) => {
-
+export const Products = ({ setOpenSnackBar, openSnackBar }) => {
   const addToCart = (item, pos) => {
-    let tempArray;
+    let tempArray
     if (localStorage['checkoutPizzas']) {
       tempArray = JSON.parse(localStorage.getItem('checkoutPizzas'))
       if (tempArray[pos]) tempArray[pos].amount += 1
@@ -22,9 +22,12 @@ export const Products = ({ pizzas, setOpenSnackBar, openSnackBar }) => {
   const dispatch = useDispatch()
   const incrementTheCart = () => dispatch(increment())
 
+  const { t } = useTranslation()
+
+  const pizzas = JSON.parse(t('pizzas', { returnObjects: true }))
+
   return (
     <div className={classes.Products}>
-
       {pizzas.map((item, pos) => {
         return (
           <ProductItem
@@ -41,7 +44,6 @@ export const Products = ({ pizzas, setOpenSnackBar, openSnackBar }) => {
           />
         )
       })}
-
     </div>
   )
 }

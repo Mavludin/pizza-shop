@@ -12,9 +12,8 @@ export const ProductItem = ({
   addToCart,
   incrementTheCart,
   setOpenSnackBar,
-  openSnackBar
+  openSnackBar,
 }) => {
-
   const { t } = useTranslation()
 
   const handleSnackBar = () => {

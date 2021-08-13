@@ -5,36 +5,47 @@ import { Link } from 'react-router-dom'
 import classes from './Checkout.module.css'
 import { endpoints } from '../../shared/routerEndpoints'
 import { OrangeButton } from '../../components/Styled/OrangeButton'
-import { decrement, increment, placed, removeItem } from '../../store/slices/count'
+import { decrement, increment, placed } from '../../store/slices/count'
 import { useState } from 'react'
 import { SentimentVeryDissatisfied } from '@material-ui/icons'
 import { CartItem } from './components/CartItem/CartItem'
 import { useTranslation } from 'react-i18next'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
+import DeleteConfirmation from './components/DeleteConfirmation/DeleteConfirmation'
+import { useEffect } from 'react'
 
 export const Checkout = ({ title }) => {
   useDocumentTitle(title)
 
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
-  const [pizzas, setPizzas] = useState(JSON.parse(localStorage.getItem('checkoutPizzas')) || [])
-  const amountOfPizzas = useSelector(state => state).countReducer.amountOfPizzas
+  const [pizzas, setPizzas] = useState([])
 
-  const deleteItem = (pos) => {
-    const sure = window.confirm('You sure?')
-    if (sure) {
-      dispatch(removeItem(pizzas[pos].amount))
-      const temp = [...pizzas]
-      temp.splice(pos, 1)
-      if (temp.every(item => item === null)) {
-        setPizzas([])
-        localStorage.removeItem('checkoutPizzas')
-      } else {
-        setPizzas(temp)
-        localStorage.setItem('checkoutPizzas', JSON.stringify(temp))
+  useEffect(() => {
+    const hey = []
+    for (let item of JSON.parse(t('pizzas', {returnObjects: true}))) {
+      for (let pizza of JSON.parse(localStorage.getItem('checkoutPizzas'))) {
+        if (pizza) {
+          if (item.id === pizza.id) {
+            const obj = {
+              amount: pizza.amount,
+              ...item,
+            }
+            hey.push(obj)
+            break
+          }
+        }
       }
     }
-  }
+    setPizzas(hey)
+
+  }, [t])
+
+  const amountOfPizzas = useSelector((state) => state).countReducer.amountOfPizzas
+
+  const [showModal, setShowModal] = useState(false)
+  const [pos, setPos] = useState(0)
 
   const incrementItem = (pos) => {
     const temp = [...pizzas]
@@ -54,32 +65,30 @@ export const Checkout = ({ title }) => {
     }
   }
 
-  const { t } = useTranslation()
-
-  const pizzasFromTheCart =
-    !pizzas.length ? (
-      <h2>
-        {t('checkout.cartEmptiness')}
-        <SentimentVeryDissatisfied />
-      </h2>
-    ) : (
-      pizzas.map((item, pos) => {
-        if (item !== null) {
-          return (
-            <CartItem
-              key={item.id}
-              title={item.title}
-              thumbnail={item.thumbnail}
-              price={item.price}
-              deleteItem={() => deleteItem(pos)}
-              incrementItem={() => incrementItem(pos)}
-              decrementItem={() => decrementItem(pos)}
-              amount={item.amount}
-            />
-          )
-        } else return null
-      })
-    )
+  const pizzasFromTheCart = !pizzas.length ? (
+    <h2>
+      {t('checkout.cartEmptiness')}
+      <SentimentVeryDissatisfied />
+    </h2>
+  ) : (
+    pizzas.map((item, pos) => {
+      if (item !== null) {
+        return (
+          <CartItem
+            key={item.id}
+            title={item.title}
+            thumbnail={item.thumbnail}
+            price={item.price}
+            setShowModal={setShowModal}
+            setPos={() => setPos(pos)}
+            incrementItem={() => incrementItem(pos)}
+            decrementItem={() => decrementItem(pos)}
+            amount={item.amount}
+          />
+        )
+      } else return null
+    })
+  )
 
   const totalPrice =
     pizzas === null
@@ -101,10 +110,11 @@ export const Checkout = ({ title }) => {
 
   return (
     <div className={classes.checkout}>
-      <h1 datatype='Checkout'>Оформление заказа</h1>
+      <h1 datatype='Checkout'>{t('heading.checkout')}</h1>
       {amountOfPizzas > 0 && (
         <p className={classes.totalItems}>
-          <strong>Всего пицц:</strong> <span className={classes.orangeText}>{amountOfPizzas}</span>
+          <strong>{t('checkout.totalPizzas')}</strong>{' '}
+          <span className={classes.orangeText}>{amountOfPizzas}</span>
         </p>
       )}
 
@@ -112,13 +122,23 @@ export const Checkout = ({ title }) => {
         <div className={classes.leftCheck}>{pizzasFromTheCart}</div>
         <div className={classes.rightCheck}>
           <h2>
-            Сумма: <span className={classes.orangeText}>{totalPrice}₽</span>
+            {t('checkout.totalAmount')} <span className={classes.orangeText}>{totalPrice}₽</span>
           </h2>
           <Link to={endpoints.PLACED} onClick={handleOrderPlacement}>
-            <OrangeButton className={classes.placeOrderBtn}>Оформить заказ</OrangeButton>
+            <OrangeButton className={classes.placeOrderBtn}>
+              {t('checkout.placeOrder')}
+            </OrangeButton>
           </Link>
         </div>
       </div>
+
+      <DeleteConfirmation
+        showModal={showModal}
+        setShowModal={setShowModal}
+        pos={pos}
+        setPizzas={setPizzas}
+        pizzas={pizzas}
+      />
     </div>
   )
 }

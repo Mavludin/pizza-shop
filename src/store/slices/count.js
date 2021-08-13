@@ -26,5 +26,6 @@ const countSlice = createSlice({
     }
   }
 });
+
 export const { increment, decrement, placed, removeItem } = countSlice.actions;
 export const countReducer = countSlice.reducer;

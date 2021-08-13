@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { footerLinks } from '../../shared/projectData'
 
 import classes from './Footer.module.css'
 
 export const Footer = () => {
+
+  const { t } = useTranslation()
+  const footerLinks = JSON.parse(t('footer.navLinks', {returnObjects: true}))
+
   return (
     <footer className={classes.mainFooter}>
       <div className={`container ${classes.footerContent}`}>

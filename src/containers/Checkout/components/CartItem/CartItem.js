@@ -5,11 +5,17 @@ export const CartItem = ({
   title,
   thumbnail,
   price,
-  deleteItem,
+  setPos,
   amount,
   incrementItem,
   decrementItem,
+  setShowModal,
 }) => {
+  const handleShowModal = () => {
+    setShowModal(true)
+    setPos()
+  }
+
   return (
     <div className={classes.item}>
       <div className={classes.itemContent}>
@@ -28,7 +34,7 @@ export const CartItem = ({
             <span>₽</span>
           </div>
           <div className={classes.deleteIcon}>
-            <img src={deleteIcon} alt='Delete an item' onClick={deleteItem} />
+            <img src={deleteIcon} alt='Delete an item' onClick={handleShowModal} />
           </div>
         </div>
       </div>

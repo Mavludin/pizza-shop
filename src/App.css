@@ -44,6 +44,7 @@ h1 {
 	font-weight: 900;
 	position: relative;
 	font-size: 2em;
+	text-align: center;
 }
 
 ul {
@@ -83,7 +84,7 @@ button {
 		padding: 10px;
 	}
 
-	h1, h2 {
+	h2 {
 		font-size: 1.8em;
 	}
 
@@ -95,11 +96,15 @@ button {
 		margin-top: 80px;
 	}
 
+	h1 {
+		font-size: 1.6em;
+	}
+
 }
 
 @media screen and (max-width: 700px) {
 
-	h1, h2 {
+	h2 {
 		font-size: 	1.5em;
 	}
 
@@ -115,7 +120,7 @@ button {
 
 @media screen and (max-width: 414px) {
 
-	h1, h2 {
+	h2 {
 		font-size: 1.2em;
 	}
 
