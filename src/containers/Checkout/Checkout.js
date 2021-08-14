@@ -25,7 +25,7 @@ export const Checkout = ({ title }) => {
   useEffect(() => {
     const hey = []
     for (let item of JSON.parse(t('pizzas', {returnObjects: true}))) {
-      for (let pizza of JSON.parse(localStorage.getItem('checkoutPizzas'))) {
+      for (let pizza of JSON.parse(localStorage.getItem('checkoutPizzas')) || []) {
         if (pizza) {
           if (item.id === pizza.id) {
             const obj = {
