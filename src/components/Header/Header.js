@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import classes from './Header.module.css'
 
@@ -16,6 +16,7 @@ import { MobileHeader } from './components/MobileHeader/MobileHeader'
 import { Overlay } from '../Styled/Overlay'
 import { useTranslation } from 'react-i18next'
 import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher'
+import { handleChange } from '../../store/slices/search'
 
 export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
   const [boxShadow, setBoxShadow] = useState('none')
@@ -26,6 +27,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
 
   const history = useHistory()
   const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const handleBoxShadow = () => {
@@ -101,7 +103,7 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
               <img src={logo} alt='Logo' />
             </Link>
           </div>
-          <nav className={classes.topMenu} aria-label="primary">
+          <nav className={classes.topMenu} aria-label='primary'>
             <ul>
               <li>
                 <Link onClick={scrollToMainHeading} to='/'>
@@ -109,18 +111,22 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
                 </Link>
               </li>
               <li>
-                <Link to='/'>
-                  {t('header.nav.snacks')}
-                </Link>
+                <Link to='/'>{t('header.nav.snacks')}</Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <form role="search">
+        <form role='search'>
           <SearchIcon />
-          <label htmlFor="headerSearch"></label>
-          <input type='search' name='search' id="headerSearch" placeholder={t('header.form.searchPlaceholder')} />
+          <label htmlFor='headerSearch'></label>
+          <input
+            type='search'
+            name='search'
+            id='headerSearch'
+            placeholder={t('header.form.searchPlaceholder')}
+            onChange={(e) => dispatch(handleChange(e.target.value))}
+          />
         </form>
 
         {mobileView ? null : (
@@ -128,9 +134,9 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
             <div className={classes.lng}>
               <LanguageSwitcher />
             </div>
-            <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>
+            {/* <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>
               {t('header.orangeButton.logIn')}
-            </OrangeButton>
+            </OrangeButton> */}
             <div className={classes.cart}>
               <Link to='/checkout'>
                 {t('header.nav.cart')}
@@ -140,9 +146,9 @@ export const Header = ({ mainHeading, setIsLoginPopUpVisible }) => {
             </div>
           </div>
         )}
-
         <img className={classes.avatar} src={avatar} alt='Avatar' />
       </div>
+
 
       {mobileMenuFlag ? <Overlay onClick={closeMobileMenu} /> : null}
     </header>

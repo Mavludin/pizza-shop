@@ -1,8 +1,10 @@
 import classes from './Products.module.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { increment } from '../../../../store/slices/count'
 import { ProductItem } from './ProductItem'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 export const Products = ({ setOpenSnackBar, openSnackBar }) => {
   const addToCart = (item, pos) => {
@@ -26,9 +28,34 @@ export const Products = ({ setOpenSnackBar, openSnackBar }) => {
 
   const pizzas = JSON.parse(t('pizzas', { returnObjects: true }))
 
+  const [searchedPizzas, setSearchedPizzas] = useState([])
+  const [isSearching, setIsSearching] = useState(false);
+
+  const searchString = useSelector(state => state).searchReducer.string
+
+  useEffect(() => {
+    if (searchString) {
+      const temp = pizzas.filter((pizza) => {
+        for (let key in pizza) {
+          if (String(pizza[key]).toLowerCase().includes(searchString.toLowerCase())) {
+            return pizza
+          }
+        }
+        return null
+      })
+      setSearchedPizzas(temp)
+      setIsSearching(true)
+    } else setIsSearching(false)
+  }, [searchString])
+
+  
+  if (isSearching && searchedPizzas.length === 0) return 'Nothing found'
+
+
   return (
     <div className={classes.Products}>
-      {pizzas.map((item, pos) => {
+
+      {(searchedPizzas.length > 0 && isSearching ? searchedPizzas : pizzas).map((item, pos) => {
         return (
           <ProductItem
             key={item.id}

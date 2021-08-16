@@ -49,7 +49,7 @@
 	margin: 0;
 }
 
-.mobileMenu ul li:first-of-type {
+.mobileMenu ul li {
 	border-bottom: 2px solid black;
 }
 

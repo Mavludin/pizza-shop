@@ -51,20 +51,24 @@ export const MobileHeader = ({
           </ul>
         </nav>
 
-        <LanguageSwitcher />
-
         <div onClick={closeMobileMenu}>
-          <HighlightOffIcon />
+          <HighlightOffIcon onClick={closeMobileMenu} />
         </div>
 
-        <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>{t('header.orangeButton.logIn')}</OrangeButton>
+        <div>
+          <LanguageSwitcher />
 
-        <div className={classes.cart}>
-          <Link to='/checkout' onClick={closeMobileMenu}>
-            {t('header.nav.cart')}
-            <div className={classes.divider}></div>
-            <div className={classes.cartCounter}>{amountOfPizzas}</div>
-          </Link>
+   
+
+          {/* <OrangeButton onClick={() => setIsLoginPopUpVisible(true)}>{t('header.orangeButton.logIn')}</OrangeButton> */}
+
+          <div className={classes.cart}>
+            <Link to='/checkout' onClick={closeMobileMenu}>
+              {t('header.nav.cart')}
+              <div className={classes.divider}></div>
+              <div className={classes.cartCounter}>{amountOfPizzas}</div>
+            </Link>
+          </div>
         </div>
       </div>
     </>
